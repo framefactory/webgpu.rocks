@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="/favicon-32.png" />
+    
+    <!-- Styles -->
+    {{ $style := resources.Get "styles.scss" | toCSS | minify }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+    <title>{{ block "title" . }}
+        {{- .Site.Title -}}
+        {{ end }}</title>
+</head>
+<body>
+    {{ block "header" . }}
+        {{ partial "header.html" . }}
+    {{ end }}
+    {{ block "main" . }}
+    {{ end }}
+    {{ block "footer" . }}
+        {{ partial "footer.html" . }}
+    {{ end }}
+</body>
+</html>

@@ -1,0 +1,103 @@
+/**
+ * WebGPU.rocks
+ * Static Hugo Website
+ */
+
+@import "./bootstrap/bootstrap-reboot";
+@import "./bootstrap/bootstrap-grid";
+ 
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,700;1,300&display=swap');
+
+$color-text: #e8e8e8;
+$color-text-dimmed: #b9c2ca;
+$color-background: #303234;
+$color-primary: #ff4454;
+
+body {
+    background-color: $color-background;
+    color: $color-text;
+    font-family: "Work Sans", "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
+    font-size: 1.1em;
+}
+
+a, a:hover, a:visited {
+    text-decoration: none;  
+    color: inherit;
+}
+
+img {
+    width: 100%;
+}
+
+button, input {
+    background-color: transparent;
+    border: none;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+.section {
+    padding: 0 0.5em;
+
+    a:hover {
+        color: $color-primary;
+    }
+}
+
+header {
+    background-color: darken($color-background, 5%);
+
+    .col {
+        margin: 3em 0;
+    }
+
+    h1 {
+        margin: 0;
+        color: $color-primary;
+        font-size: 3.5em;
+        font-weight: bold;
+    }
+}
+
+footer {
+    background-color: darken($color-background, 8%);
+    color: $color-text-dimmed;
+
+    .col {
+        margin: 2em 0;
+    }
+}
+
+main {
+    &.section {
+        padding-bottom: 2em;
+    }
+
+
+
+    h1 {
+        color: $color-text-dimmed;
+        font-weight: bold;
+        font-size: 2.4em;
+        margin: 1.5em 0 0.5em 0;        
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 1em;
+    }
+
+    li {
+        margin: 0.2em 0;
+        //padding-left: 0;
+
+        &:before {
+            content: "*";
+            position: relative;
+            top: 0.1em;
+            padding-right: 0.5em;
+            font-size: 1.2em;
+            color: $color-text-dimmed;
+        }
+    }
+}

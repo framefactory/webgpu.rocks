@@ -1,0 +1,17 @@
+{{ define "main" }}
+    <main class="container">
+        <div class="row">
+            <div class="col">
+                <h1>{{ .Title }}</h2>
+            </div>
+        </div>
+        {{ range .Pages }}
+        <div class="row">
+            <article class="col">
+                <h2>{{ .Title }}</h2>
+                {{ .Content }}
+            </article>
+        </div>
+        {{ end }}
+    </main>
+{{ end }}

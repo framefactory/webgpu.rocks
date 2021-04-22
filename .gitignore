@@ -1,0 +1,11 @@
+# folders
+.idea/
+.vscode/
+
+node_modules/
+public/
+resources/
+static/*
+
+# files
+!static/.gitkeep
