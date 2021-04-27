@@ -2,5 +2,13 @@
     "title": "WebGPU.rocks",
     "baseUrl": "https://example.org",
     "languageCode": "en-US",
-    "DefaultContentLanguage": "en"
+    "DefaultContentLanguage": "en",
+
+    "markup": {
+        "goldmark": {
+            "renderer": {
+                "unsafe": true
+            }
+        }
+    }
 }

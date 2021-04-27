@@ -7,11 +7,21 @@
 @import "./bootstrap/bootstrap-grid";
  
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,700;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
 
 $color-text: #e8e8e8;
 $color-text-dimmed: #b9c2ca;
+$color-text-transparent: transparentize($color-text, 0.4);
 $color-background: #303234;
+$color-background-light: lighten($color-background, 5%);
+$color-background-lighter: lighten($color-background, 10%);
+$color-background-lightest: lighten($color-background, 15%);
+
 $color-primary: #ff4454;
+
+$color-class-title: #2a6771;
+$color-class: transparentize(#2f4748, 0.3);
 
 body {
     background-color: $color-background;
@@ -101,3 +111,47 @@ main {
         }
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+.ref-table {
+    background-color: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    width: 100%;
+
+    th, td {
+        padding: 0 2px;
+        border-bottom: 2px solid $color-background;
+    }
+
+    th {
+        font-weight: inherit;
+    }
+
+    .title {
+        font-family: 'Inconsolata', monospace;
+        font-weight: 500;
+        font-size: 1.1rem;
+    }
+    .dim {
+        color: $color-text-transparent;
+    }
+}
+
+.ref-class {
+    th {
+        background-color: $color-class-title;
+    }
+
+    td {
+        background-color: $color-class;
+    }
+}
+
+.font-mono {
+    font-family: 'Inconsolata', monospace;
+}
+
+

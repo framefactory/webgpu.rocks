@@ -1,3 +1,7 @@
+# Reference
+
+- [Reference](/pages/reference)
+
 # Resources
 
 - [Awesome WebGPU](https://github.com/mikbry/awesome-webgpu)
