@@ -3,7 +3,10 @@
 .vscode/
 
 node_modules/
+bin/
 public/
+content/types/
+data/
 resources/
 static/*
 

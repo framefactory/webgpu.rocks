@@ -1,0 +1,6 @@
+[submodule "libs/gpuweb"]
+	path = libs/gpuweb
+	url = git@github.com:gpuweb/gpuweb.git
+[submodule "libs/types"]
+	path = libs/types
+	url = git@github.com:gpuweb/types.git
