@@ -116,11 +116,14 @@ export function sort(idlBlocks: Map<string, IDLRootType[]>): IDLTypes
     });
 
     idlTypeKeys.forEach(key => {
+        // for each category, sort types by name
         idlTypes[key].sort((a, b) => {
             const nameA = a.name || a.target;
             const nameB = b.name || b.target;
             return nameA < nameB ? -1 : (nameA > nameB ? 1 : 0);
         });
+
+        console.log(`[sorter] ${key}: ${idlTypes[key].length} items`);
     });
 
     return idlTypes;

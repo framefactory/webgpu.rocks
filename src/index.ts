@@ -13,7 +13,7 @@ import * as path from "path";
 import * as mkdirp from "mkdirp";
 
 import { parseBikeShedFile } from "./parser";
-import { sort, EIDLType, MergedInterfaceType } from "./sorter";
+import { sort, EIDLType, MergedInterfaceType, idlTypeKeys } from "./sorter";
 import Generator from "./Generator";
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -23,32 +23,36 @@ import Generator from "./Generator";
     const blocks = await parseBikeShedFile(specPath);
 
     const idlTypes = sort(blocks.idl);
-    
-    // const creatorKeys = Object.keys(idlTypes.creators);
-    // creatorKeys.forEach(key => {
-    //     const creators = idlTypes.creators[key];
-    //     const creator = creators[0];
-    //     console.log(`Creator for '${key}' (${creators.length}): ${creator.type.name}.${creator.operation.name}`);
-    // });
-
     const generator = new Generator(idlTypes);
-    
-    const html = generator.generateReference();
+
+    console.log(JSON.stringify(idlTypes.all["GPUBindGroupLayoutDescriptor"], null, 4));
+
+    const html = generator.getReference();
     const refPath = path.resolve(__dirname, "../data/reference.html");
     fs.writeFileSync(refPath, html);
 
     const dataTypesPath = path.resolve(__dirname, "../data/types");
-    mkdirp(dataTypesPath);
+    mkdirp.sync(dataTypesPath);
 
     const contentTypesPath = path.resolve(__dirname, "../content/types");
-    mkdirp(contentTypesPath);
-    
-    idlTypes[EIDLType.Interface].forEach(iface => {
-        const json = JSON.stringify(iface, null, 4);
-        fs.writeFileSync(path.resolve(dataTypesPath, `${iface.name}.json`), json);
+    const allKeys = Object.keys(idlTypes.all);
 
-        const html = generator.generateInterface(iface);
-        fs.writeFileSync(path.resolve(contentTypesPath, `${iface.name}.html`), html);    
+    const frontMatter = "---\nheadless: true\n---\n\n";
+
+    allKeys.forEach(key => {
+        const node = idlTypes.all[key];
+        const html = generator.getSummary(node, false);
+        if (html) {
+            const type = node.type === "interface mixin" ? "mixin" : node.type;
+            const name = node["name"];
+
+            const basePath = path.resolve(contentTypesPath, type);
+            mkdirp.sync(basePath);
+
+            const filePath = path.resolve(basePath, name + ".html");
+            fs.writeFileSync(filePath, frontMatter + html);
+        }
     });
+
 })();
 

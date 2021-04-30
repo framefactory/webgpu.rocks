@@ -9,11 +9,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,700;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 $color-text: #e8e8e8;
 $color-text-dimmed: #b9c2ca;
 $color-text-transparent: transparentize($color-text, 0.4);
-$color-background: #303234;
+$color-background: #34373a;
 $color-background-light: lighten($color-background, 5%);
 $color-background-lighter: lighten($color-background, 10%);
 $color-background-lightest: lighten($color-background, 15%);
@@ -22,6 +23,33 @@ $color-primary: #ff4454;
 
 $color-class-title: #2a6771;
 $color-class: transparentize(#2f4748, 0.3);
+
+$color-interface: #726748;
+$color-dictionary: #78426d;
+$color-typedef: #3c3c82;
+$color-enum: #3c6182;
+
+$color-type: lighten($color-primary, 7%);
+$color-constructor: #d48535;
+$color-attribute: #4058d2;
+$color-operation: #2e7156;
+$color-field: #a94595;
+
+@mixin font-idl-mono {
+    font-family: 'Inconsolata', monospace;
+    font-weight: 300;
+}
+
+@mixin font-idl-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+@mixin font-idl-condensed {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+}
+
 
 body {
     background-color: $color-background;
@@ -92,66 +120,164 @@ main {
         margin: 1.5em 0 0.5em 0;        
     }
 
-    ul {
-        list-style: none;
-        padding-left: 1em;
-    }
+    // ul {
+    //     list-style: none;
+    //     padding-left: 1em;
+    // }
 
-    li {
-        margin: 0.2em 0;
-        //padding-left: 0;
+    // li {
+    //     margin: 0.2em 0;
+    //     //padding-left: 0;
 
-        &:before {
-            content: "*";
-            position: relative;
-            top: 0.1em;
-            padding-right: 0.5em;
-            font-size: 1.2em;
-            color: $color-text-dimmed;
-        }
-    }
+    //     &:before {
+    //         content: "*";
+    //         position: relative;
+    //         top: 0.1em;
+    //         padding-right: 0.5em;
+    //         font-size: 1.2em;
+    //         color: $color-text-dimmed;
+    //     }
+    // }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-.ref-table {
-    background-color: transparent;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
-    width: 100%;
+@mixin idl-badge {
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    margin: 0 0.5em 0 0.25em;
+    border-radius: 3px;
+}
 
-    th, td {
-        padding: 0 2px;
-        border-bottom: 2px solid $color-background;
+.idl-block {
+    @include font-idl-mono;
+    box-shadow: 0 0 1.2em 0 rgba(black, 0.5);
+    font-size: 0.95rem;
+    margin: 1em 0;
+
+    a {
+        margin: 0;
+        padding: 0;
     }
 
-    th {
-        font-weight: inherit;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
-    .title {
-        font-family: 'Inconsolata', monospace;
+    h2, .idl-creator, .idl-member {
+        padding: 2px;
+    }
+
+    h2 {
+        font-size: 1.2em;
         font-weight: 500;
-        font-size: 1.1rem;
+        margin: 0;
     }
-    .dim {
-        color: $color-text-transparent;
+
+    summary {
+        display: block;
+    }
+
+    .idl-detail-block {
+        margin: 0.5em 0 1em 1.6em;
+    }
+
+    .idl-detail {
+        margin-bottom: 0.5em;
+        box-shadow: 0 0 0.8em 0.2em rgba(#fff8e9, 0.7);
+
+        h2 {
+            font-size: 1em;
+        }
+    }
+
+    .idl-member {
+        background-color: darken($color-background, 12%);
+
+        &:nth-child(even) {
+            background-color: darken($color-background, 8%);
+        }
+    }
+    .idl-creator:before {
+        @include idl-badge;
+        content: "";
+        background-color: $color-constructor;
+    }
+    .idl-attribute:before {
+        @include idl-badge;
+        content: "";
+        background-color: $color-attribute;
+    }
+    .idl-operation:before {
+        @include idl-badge;
+        content: "";
+        background-color: $color-operation;
+    }
+    .idl-field:before {
+        @include idl-badge;
+        content: "";
+        background-color: $color-field;
+    }
+
+    .idl-enum-values {
+        font-size: 0.9em;
+    }
+
+    .idl-required {
+        @include font-idl-condensed;
+        margin: 0 0.75em;
+        padding: 0 0.25em;
+        background-color: #b02b1f;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        border-radius: 0.5em;
     }
 }
 
-.ref-class {
-    th {
-        background-color: $color-class-title;
+div.idl-interface {
+    h2 {
+        background-color: $color-interface;
     }
-
-    td {
-        background-color: $color-class;
+    .idl-creators {
+        background-color: darken(mix($color-interface, $color-background, 20%), 5%);
     }
 }
 
-.font-mono {
-    font-family: 'Inconsolata', monospace;
+div.idl-dictionary h2 {
+    background-color: $color-dictionary;
 }
 
+div.idl-typedef h2 {
+    background-color: $color-typedef;
+}
 
+div.idl-enum h2 {
+    background-color: $color-enum;
+}
+
+.idl-type {
+    color: lighten($color-type, 5%);
+}
+.idl-var {
+    color: darken($color-text, 10%);
+}
+.idl-name {
+    color: $color-text;
+    font-weight: 400;
+    padding-right: 0.125em;
+}
+.idl-type.idl-interface {
+    color: lighten(saturate($color-interface, 20%), 40%);
+}
+.idl-type.idl-dictionary {
+    color: lighten(saturate($color-dictionary, 20%), 40%);
+}
+.idl-type.idl-typedef {
+    color: lighten(saturate($color-typedef, 20%), 40%);
+}
+.idl-type.idl-enum {
+    color: lighten(saturate($color-enum, 20%), 40%);
+}

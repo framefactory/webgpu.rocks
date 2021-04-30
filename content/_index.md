@@ -1,6 +1,6 @@
 # Reference
 
-- [Reference](/pages/reference)
+- [Reference](/reference)
 
 # Resources
 

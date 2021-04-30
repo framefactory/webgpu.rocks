@@ -5,7 +5,8 @@
 node_modules/
 bin/
 public/
-content/types/
+content/types/*
+!content/types/index.md
 data/
 resources/
 static/*
