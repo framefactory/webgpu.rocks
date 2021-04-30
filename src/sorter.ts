@@ -129,38 +129,38 @@ export function sort(idlBlocks: Map<string, IDLRootType[]>): IDLTypes
     return idlTypes;
 }
 
-export function mergeInterfaces(blocks: IDLRootType[]): IDLRootType
+export function mergeInterfaces(nodes: IDLRootType[]): IDLRootType
 {
-    if (blocks.length === 1) {
-        return blocks[0];
+    if (nodes.length === 1) {
+        return nodes[0];
     }
 
-    const interfaceBlock = blocks.find(block => block.type === "interface" && block.partial === false) as MergedInterfaceType;
-    if (!interfaceBlock) {
-        console.log(blocks);
-        throw Error("no non-partial interface block");
+    const interfaceNode = nodes.find(node => node.type === "interface" && node.partial === false) as MergedInterfaceType;
+    if (!interfaceNode) {
+        console.log(nodes);
+        throw Error("no non-partial interface node");
     }
 
-    interfaceBlock.includes = [];
+    interfaceNode.includes = [];
 
-    blocks.forEach(block => {
-        if (block === interfaceBlock) {
+    nodes.forEach(node => {
+        if (node === interfaceNode) {
             return;
         }
 
-        switch(block.type) {
+        switch(node.type) {
             case "interface":
-                if (block.inheritance) {
-                    console.warn(`partial interface ${block.name} with inheritance: ${block.inheritance}`);
+                if (node.inheritance) {
+                    console.warn(`partial interface ${node.name} with inheritance: ${node.inheritance}`);
                 }
-                interfaceBlock.members = interfaceBlock.members.concat(block.members);
-                interfaceBlock.extAttrs = interfaceBlock.extAttrs.concat(block.extAttrs);
+                interfaceNode.members = interfaceNode.members.concat(node.members);
+                interfaceNode.extAttrs = interfaceNode.extAttrs.concat(node.extAttrs);
                 break;
             case "includes":
-                interfaceBlock.includes.push(block.includes);
+                interfaceNode.includes.push(node.includes);
                 break;
         }
     });
 
-    return interfaceBlock;
+    return interfaceNode;
 }

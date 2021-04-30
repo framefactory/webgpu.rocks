@@ -25,7 +25,7 @@ import Generator from "./Generator";
     const idlTypes = sort(blocks.idl);
     const generator = new Generator(idlTypes);
 
-    console.log(JSON.stringify(idlTypes.all["GPUBindGroupLayoutDescriptor"], null, 4));
+    //console.log(JSON.stringify(idlTypes.all["GPUBindGroupLayoutDescriptor"], null, 4));
 
     const html = generator.getReference();
     const refPath = path.resolve(__dirname, "../data/reference.html");

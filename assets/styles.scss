@@ -29,10 +29,11 @@ $color-dictionary: #78426d;
 $color-typedef: #3c3c82;
 $color-enum: #3c6182;
 
-$color-type: lighten($color-primary, 7%);
-$color-constructor: #d48535;
-$color-attribute: #4058d2;
-$color-operation: #2e7156;
+$color-type: #ff848e;
+$color-variable: #a3bed6; // #bee28f;
+$color-constructor: #cb9b40;
+$color-attribute: #4069d2;
+$color-operation: #577b44;
 $color-field: #a94595;
 
 @mixin font-idl-mono {
@@ -167,40 +168,46 @@ main {
         list-style: none;
     }
 
-    h2, .idl-creator, .idl-member {
-        padding: 2px;
+    h2, .idl-creator, .idl-member, .idl-enum-values {
+        padding: 2px 3px;
     }
 
     h2 {
-        font-size: 1.2em;
+        font-size: 1.5em;
         font-weight: 500;
         margin: 0;
     }
 
-    summary {
+    summary, details {
         display: block;
     }
 
+    details[open] {
+        background-color: lighten($color-background, 5%);
+        overflow: hidden;
+    }
+
     .idl-detail-block {
-        margin: 0.5em 0 1em 1.6em;
+        margin: 0.5em 0.5em 1em 1.6em;
     }
 
     .idl-detail {
         margin-bottom: 0.5em;
-        box-shadow: 0 0 0.8em 0.2em rgba(#fff8e9, 0.7);
+        box-shadow: 0 0 0.8em 0.2em rgba(#fff8e9, 0.5);
 
         h2 {
             font-size: 1em;
         }
     }
 
-    .idl-member {
+    .idl-line {
         background-color: darken($color-background, 12%);
 
         &:nth-child(even) {
             background-color: darken($color-background, 8%);
         }
     }
+
     .idl-creator:before {
         @include idl-badge;
         content: "";
@@ -223,17 +230,26 @@ main {
     }
 
     .idl-enum-values {
-        font-size: 0.9em;
+        //font-size: 0.9em;
     }
 
     .idl-required {
         @include font-idl-condensed;
         margin: 0 0.75em;
         padding: 0 0.25em;
-        background-color: #b02b1f;
+        border-radius: 0.25em;
+        background-color: #9c2b21;
         font-size: 0.8em;
         text-transform: uppercase;
-        border-radius: 0.5em;
+    }
+
+    .idl-default {
+        //font-weight: 400;
+        font-size: 0.95em;
+        margin: 0 0.75em;
+        padding: 0.05em 0.25em;
+        border-radius: 0.25em;
+        background-color: #324d42;
     }
 }
 
@@ -258,11 +274,11 @@ div.idl-enum h2 {
     background-color: $color-enum;
 }
 
-.idl-type {
-    color: lighten($color-type, 5%);
+.idl-type, .idl-keyword {
+    color: $color-type;
 }
 .idl-var {
-    color: darken($color-text, 10%);
+    color: $color-variable;
 }
 .idl-name {
     color: $color-text;
@@ -270,14 +286,14 @@ div.idl-enum h2 {
     padding-right: 0.125em;
 }
 .idl-type.idl-interface {
-    color: lighten(saturate($color-interface, 20%), 40%);
+    color: lighten(saturate($color-interface, 25%), 40%);
 }
 .idl-type.idl-dictionary {
-    color: lighten(saturate($color-dictionary, 20%), 40%);
+    color: lighten(saturate($color-dictionary, 35%), 50%);
 }
 .idl-type.idl-typedef {
-    color: lighten(saturate($color-typedef, 20%), 40%);
+    color: lighten(saturate($color-typedef, 65%), 52%);
 }
 .idl-type.idl-enum {
-    color: lighten(saturate($color-enum, 20%), 40%);
+    color: lighten(saturate($color-enum, 65%), 45%);
 }

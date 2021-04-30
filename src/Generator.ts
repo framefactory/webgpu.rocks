@@ -126,7 +126,7 @@ export default class Generator
         const creators = this.types.creators[node.name];
         if (creators) {
             html.push('<ul class="idl-creators">');
-            creators.forEach(creator => html.push(this.getCreator(creator, noDetails)));
+            creators.forEach(creator => html.push(`<li>${this.getCreator(creator, noDetails)}</li>`));
             html.push('</ul>');
         }
 
@@ -139,26 +139,26 @@ export default class Generator
     getMemberList(node: MergedInterfaceType | InterfaceMixinType, noDetails: boolean): string
     {
         const html: string[] = [];
-        html.push('<ul class="idl-members">');
+        html.push('<ul>');
 
         node.members.forEach((member: IDLInterfaceMemberType) => {
             switch(member.type) {
                 case "constructor":
-                    html.push(`<li class="idl-member">${this.getConstructor(member)}</li>`);
+                    html.push(`<li class="idl-line">${this.getConstructor(member)}</li>`);
                     break;
                 case "operation":
-                    html.push(`<li class="idl-member">${this.getOperation(member, noDetails)}</li>`);
+                    html.push(`<li class="idl-line">${this.getOperation(member, noDetails)}</li>`);
                     break;
                 case "attribute":
-                    html.push(`<li class="idl-member idl-attribute">${this.getAttribute(member)}</li>`);
+                    html.push(`<li class="idl-line">${this.getAttribute(member)}</li>`);
                     break;
                 case "const":
-                    html.push(`<li class="idl-member idl-const">${this.getConst(member)}</li>`);
+                    html.push(`<li class="idl-line">${this.getConst(member)}</li>`);
                     break;
                 case "setlike":
                 case "maplike":
                 case "iterable":
-                    html.push(`<li class="idl-member idl-declaration">${this.getDeclaration(member)}</li>`);
+                    html.push(`<li class="idl-line">${this.getDeclaration(member)}</li>`);
                     break;
             }
         });
@@ -174,7 +174,9 @@ export default class Generator
         const typeName = member.parent.name;
         const ret = `<a href="#idl-${typeName}" class="idl-type">${typeName}</a>`;
 
-        html.push(`<span class="idl-constructor"><span class="idl-name">Constructor</span>(${args.join(", ")}): ${ret}</span>`);
+        html.push('<div class="idl-member idl-constructor">');
+        html.push(`<span class="idl-name">Constructor</span>(${args.join(", ")}): ${ret}</span>`);
+        html.push('</div>');
         return html.join("\n");
     }
 
@@ -188,12 +190,12 @@ export default class Generator
         content += `.<span class="idl-name">${creator.operation.name}</span>(${args}): ${ret}`
 
         if (noDetails) {
-            return `<span class="idl-creator">${content}</span>`;
+            return `<div class="idl-creator">${content}</div>`;
         }
 
         const detail = this.getDetail(creator.operation.arguments);
         if (!detail) {
-            return `<div class="idl-creator>${content}</div>`;
+            return `<div class="idl-creator">${content}</div>`;
         }
 
         return `<details><summary class="idl-creator">${content}</summary>${detail}</details>`;
@@ -206,15 +208,15 @@ export default class Generator
         const content = `<span class="idl-name">${member.name}</span>(${args}): ${ret}`;
 
         if (noDetails) {
-            return `<span class="idl-operation">${content}</span>`;
+            return `<span class="idl-member idl-operation">${content}</span>`;
         }
 
         const detail = this.getDetail(member.arguments);
         if (!detail) {
-            return `<div class="idl-operation>${content}</div>`;
+            return `<div class="idl-member idl-operation">${content}</div>`;
         }
 
-        return `<details><summary class="idl-operation">${content}</summary>${detail}</details>`;
+        return `<details><summary class="idl-member idl-operation">${content}</summary>${detail}</details>`;
     }
 
     protected getDetail(args: Argument[]): string
@@ -242,38 +244,58 @@ export default class Generator
 
     protected getAttribute(member: AttributeMemberType): string
     {
-        return `<span class="idl-name">${member.name}</span>: ${this.getType(member.idlType)}`;
+        return `<div class="idl-member idl-attribute"><span class="idl-name">${member.name}</span>: ${this.getType(member.idlType)}</div>`;
     }
 
     protected getConst(member: ConstantMemberType): string
     {
-        return `<span class="idl-name">${member.name}</span> = ${member.value["value"]}`;
+        return `<span class="idl-member idl-const"><span class="idl-name">${member.name}</span> = ${member.value["value"]}</span>`;
     }
 
     protected getDeclaration(member: DeclarationMemberType): string
     {
         const typeArgs = member.idlType.map(t => this.getType(t));
 
-        return `<span class="idl-name">${member.type}</span>&lt;${typeArgs}&gt;`;
+        return `<div class="idl-member idl-declaration"><span class="idl-name">${member.type}</span>&lt;${typeArgs}&gt;</div>`;
     }
 
     protected getField(member: FieldType): string
     {
-        return `<span class="idl-name">${member.name}</span>: ${this.getType(member.idlType)}${member.required ? '<span class="idl-required">required</span>' : ''}`;
-    }
-
-    protected getTypeNamesRecursive(idlType: IDLTypeDescription, level = 0): string[]
-    {
-        if (level > 1) {
-            return [];
+        const html: string[] = [];
+        const def = member.default as any;
+        let defaultValue: any = undefined;
+        if (def) {
+            if (def.type === "string") {
+                defaultValue = `'${def.value}'`;
+            }
+            else if (def.type === "dictionary") {
+                defaultValue = "{ &hellip; }";
+            }
+            else if (def.type === "sequence") {
+                defaultValue = "[]";
+            }
+            else {
+                defaultValue = def.value ?? def.type;
+            }
         }
 
+        html.push('<div class="idl-member idl-field">');
+        html.push(`<span class="idl-name">${member.name}</span>: ${this.getType(member.idlType)}`);
+        html.push(member.required ? '<span class="idl-required">required</span>' : '');
+        html.push(defaultValue ? `<span class="idl-default">= ${defaultValue}</span>` : '');
+        html.push('</div>');
+
+        return html.join("");
+    }
+
+    protected getTypeNamesRecursive(idlType: IDLTypeDescription): string[]
+    {
         if (Array.isArray(idlType.idlType)) {
-            return idlType.idlType.map(t => this.getTypeNamesRecursive(t, level)).flat();
+            return idlType.idlType.map(t => this.getTypeNamesRecursive(t)).flat();
         }
 
         if (idlType.generic) {
-            return this.getTypeNamesRecursive(idlType.idlType, level);
+            return this.getTypeNamesRecursive(idlType.idlType);
         }
 
         const typeName = idlType.idlType as string;
@@ -284,10 +306,11 @@ export default class Generator
         }
 
         if (type.type === "typedef") {
-            return [ typeName, ...this.getTypeNamesRecursive(type.idlType, level) ];
+            return [ typeName, ...this.getTypeNamesRecursive(type.idlType) ];
         }
         if (type.type === "dictionary") {
-            return [ typeName, ...type.members.map(m => this.getTypeNamesRecursive(m.idlType, level + 1)).flat()];
+            const members = type.members.filter(m => this.types.all[m.idlType.idlType as string]?.type !== "interface");
+            return [ typeName, ...members.map(m => this.getTypeNamesRecursive(m.idlType)).flat()];
         }
 
         return [ typeName ];
@@ -295,15 +318,20 @@ export default class Generator
 
     protected getType(idlType: IDLTypeDescription): string
     {
-        let typeName;
+        let typeName: string;
+        let isArray = false;
         const innerType = idlType.idlType;
 
         if (Array.isArray(innerType)) {
+            isArray = true;
             const separator = idlType.union ? " | " : ", ";
             typeName = innerType.map(t => this.getType(t)).join(separator);
         }
+        else if (typeof innerType === "string") {
+            typeName = innerType;
+        }
         else {
-            typeName = typeof innerType === "string" ? innerType : this.getType(innerType);
+            typeName = this.getType(innerType);
         }
 
         if (typeName === "undefined") {
@@ -315,12 +343,16 @@ export default class Generator
         }
 
         const type = this.types.all[typeName];
-
         if (type) {
-            return `<a href="#idl-${typeName}" class="idl-type idl-${type.type}">${typeName}</a>`;
+            if (type.type === "interface") {
+                return `<a href="#idl-${typeName}" class="idl-type idl-${type.type}">${typeName}</a>`;
+            }
+            else {
+                return `<span class="idl-type idl-${type.type}">${typeName}</span>`;
+            }    
         }
     
-        return `<span class="idl-type">${typeName}</span>`;
+        return isArray ? typeName : `<span class="idl-type idl-unknown">${typeName}</span>`;
     }
 
     getMixin(node: InterfaceMixinType, noDetails = false): string
@@ -341,8 +373,8 @@ export default class Generator
         html.push('<div class="idl-dictionary">');
         html.push(`<h2>${node.name}</h2>`);
 
-        html.push('<ul class="idl-members">');
-        node.members.forEach(m => html.push(`<li class="idl-member idl-field">${this.getField(m)}</li>`));
+        html.push('<ul>');
+        node.members.forEach(m => html.push(`<li class="idl-line">${this.getField(m)}</li>`));
         html.push("</ul>");
 
         html.push('</div>');
@@ -364,7 +396,7 @@ export default class Generator
     {
         const html: string[] = [];
         html.push('<ul class="idl-enum-values">');
-        node.values.forEach(v => html.push(`<li class="idl-enum-value">${v.value}</li>`));
+        node.values.forEach(v => html.push(`<li class="idl-line idl-enum-value">${v.value}</li>`));
         html.push('</ul>');
 
         return html.join("\n");
@@ -373,10 +405,9 @@ export default class Generator
     getEnumValueString(node: EnumType): string
     {
         const html: string[] = [];
-        html.push('<div class="idl-enum-values idl-member">');
+        html.push('<div class="idl-line idl-enum-values">');
         html.push(node.values.map(v => `'${v.value}'`).join(", "));
         html.push('</div>');
-
         return html.join("\n");
     }
 
@@ -385,9 +416,26 @@ export default class Generator
         const html: string[] = [];
         html.push('<div class="idl-typedef">');
         html.push(`<h2>${node.name}</h2>`);
-        html.push(`<div class="idl-member">typedef ${node.name} = ${this.getType(node.idlType)}</div>`);
-        html.push('</div>');
 
+        if (node.name.endsWith("Flags")) {
+            const flagTypeName = node.name.substr(0, node.name.length - 5);
+            const flagNode = this.types.all[flagTypeName];
+
+            if (flagNode && flagNode.type === "interface") {
+                html.push('<ul>');
+        
+                flagNode.members.forEach((member: ConstantMemberType) => {
+                    html.push(`<li class="idl-line"><div class="idl-member idl-const"><span class="idl-type idl-typedef">${flagTypeName}</span>.${this.getConst(member)}</div></li>`);
+                });
+
+                html.push("</ul>");
+            }
+        }
+        else {
+            html.push(`<div class="idl-line"><div class="idl-member"><span class="idl-keyword">typedef</span> <span class="idl-type idl-typedef">${node.name}</span> = ${this.getType(node.idlType)}</div></div>`);
+        }
+
+        html.push('</div>');
         return html.join("\n");
     }
 
