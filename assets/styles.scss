@@ -9,17 +9,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,700;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;500&display=swap');
 
 $color-text: #e8e8e8;
+$color-text-dim: #c1cfdb;
 $color-text-dimmed: #b9c2ca;
 $color-text-transparent: transparentize($color-text, 0.4);
 $color-background: #34373a;
+$color-background-dark: darken($color-background, 5%);
+$color-background-darker: darken($color-background, 10%);
 $color-background-light: lighten($color-background, 5%);
 $color-background-lighter: lighten($color-background, 10%);
 $color-background-lightest: lighten($color-background, 15%);
 
 $color-primary: #ff4454;
+$color-primary-light: lighten($color-primary, 10%);
 
 $color-class-title: #2a6771;
 $color-class: transparentize(#2f4748, 0.3);
@@ -73,6 +77,16 @@ button, input {
     border: none;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: $color-background-darker;
+}
+::-webkit-scrollbar-thumb {
+    background-color: $color-background-lighter;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 .section {
@@ -84,26 +98,27 @@ button, input {
 }
 
 header {
-    background-color: darken($color-background, 5%);
+    background-color: $color-background-darker;
 
     .col {
-        margin: 3em 0;
+        margin: 1em 0;
     }
 
     h1 {
         margin: 0;
         color: $color-primary;
-        font-size: 3.5em;
+        font-size: 2em;
         font-weight: bold;
     }
 }
 
 footer {
+    font-size: 0.9em;
     background-color: darken($color-background, 8%);
     color: $color-text-dimmed;
 
     .col {
-        margin: 2em 0;
+        margin: 1em 0;
     }
 }
 
@@ -112,13 +127,34 @@ main {
         padding-bottom: 2em;
     }
 
+    a:hover {
+        color: $color-primary;
+    }
 
+    a:hover code {
+        color: $color-primary;
+    }
+    code {
+        @include font-idl-mono;
+        font-size: 1em;
+        font-weight: 300;
+        color: $color-text-dim;
+        background-color: $color-background-dark;
+        padding: 1px 4px;
+        border-radius: 0.25em;
+    }
 
     h1 {
-        color: $color-text-dimmed;
+        color: $color-text-dim;
         font-weight: bold;
-        font-size: 2.4em;
-        margin: 1.5em 0 0.5em 0;        
+        font-size: 2.6em;
+        margin: 0.5em 0;        
+    }
+
+    h2 {
+        font-size: 1.5em;
+        margin: 1.6em 0 0.8em 0;
+        color: $color-primary;
     }
 
     // ul {
@@ -141,6 +177,68 @@ main {
     // }
 }
 
+.reference {
+    display: flex;
+    align-items: stretch;
+    min-height: 0;
+
+    .content {
+        overflow: hidden auto;
+        padding: 1em 2em;
+
+        ul {
+            list-style: square;
+        }
+        li {
+            font-size: 0.95em;
+            margin-bottom: 0.25em;
+        }
+    }
+}
+
+.sidebar-toc {
+    overflow: hidden auto;
+    flex: 0 0 auto;
+    width: 15em;
+    background-color: $color-background-dark;
+    font-size: 0.95rem;
+
+    h2 {
+        @include font-idl-mono;
+        margin: 0;
+        padding: 2px 0.5em;
+        font-size: 1.5em;
+        font-weight: 500;
+        background-color: $color-interface;
+        color: $color-text;
+    }
+    ul {
+        @include font-idl-condensed;
+        margin: 0.5em 0;
+        padding: 0 0.25em;
+        list-style: none;
+        line-height: 1.7em;
+        color: $color-text-dimmed;
+    }
+}
+
+.idl-block {
+    overflow: hidden auto;
+    flex: 1 1 auto;
+}
+
+.fullsize {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 @mixin idl-badge {
@@ -155,7 +253,7 @@ main {
     @include font-idl-mono;
     box-shadow: 0 0 1.2em 0 rgba(black, 0.5);
     font-size: 0.95rem;
-    margin: 1em 0;
+    //margin: 1em 0;
 
     a {
         margin: 0;
@@ -176,6 +274,7 @@ main {
         font-size: 1.5em;
         font-weight: 500;
         margin: 0;
+        color: $color-text;
     }
 
     summary, details {
@@ -183,17 +282,21 @@ main {
     }
 
     details[open] {
-        background-color: lighten($color-background, 5%);
+        background-color: lighten($color-background, 2%);
         overflow: hidden;
     }
 
     .idl-detail-block {
         margin: 0.5em 0.5em 1em 1.6em;
+
+        .idl-detail {
+            box-shadow: 0 0 0.8em 0.2em rgba(#fff8e9, 0.5);
+            margin: 0 0 0.5em 0;
+        }
     }
 
     .idl-detail {
-        margin-bottom: 0.5em;
-        box-shadow: 0 0 0.8em 0.2em rgba(#fff8e9, 0.5);
+        margin: 0.5em 0;
 
         h2 {
             font-size: 1em;

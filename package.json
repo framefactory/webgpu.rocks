@@ -1,11 +1,14 @@
 {
     "name": "webgpu.rocks",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "WebGPU resources and quick reference",
     "main": "bin/index.js",
     "scripts": {
         "start": "tsc && node bin/index.js",
-        "build": "tsc",
+        "build:generator": "tsc",
+        "build:site": "rm -rf public/* && hugo",
+        "build": "tsc && node bin/index.js && rm -rf public/* && hugo",
+        "dev": "tsc && node bin/index.js && hugo server --disableFastRender --noHTTPCache",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {

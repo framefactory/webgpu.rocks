@@ -21,7 +21,7 @@ import {
 ////////////////////////////////////////////////////////////////////////////////
 
 export type MergedInterfaceType = InterfaceType & {
-    includes: string[];
+    includes?: string[];
 };
 
 export enum EIDLType
@@ -67,7 +67,7 @@ export interface IDLTypes
     [EIDLType.Includes]: IncludesType[];
 }
 
-export function sort(idlBlocks: Map<string, IDLRootType[]>): IDLTypes
+export function sort(nodes: Map<string, IDLRootType[]>): IDLTypes
 {
     const idlTypes: IDLTypes = {
         all: {},
@@ -82,14 +82,21 @@ export function sort(idlBlocks: Map<string, IDLRootType[]>): IDLTypes
         [EIDLType.Includes]: [],
     };
 
-    idlBlocks.forEach((block, key) => idlTypes.all[key] = mergeInterfaces(block));
+    nodes.forEach((node, key) => idlTypes.all[key] = mergePartialInterfaces(key, node));
+
     const typeNames = Object.keys(idlTypes.all);
 
+    // add each type to its category
     typeNames.forEach(typeName => {
         const idlType = idlTypes.all[typeName];
-
-        // add to type category
         idlTypes[idlType.type].push(idlType);
+    });
+
+    mergeMixins(idlTypes);
+
+    // collect creator functions
+    typeNames.forEach(typeName => {
+        const idlType = idlTypes.all[typeName];
 
         if (idlType.type === EIDLType.Interface || idlType.type === EIDLType.InterfaceMixin) {
             const iface = idlType as MergedInterfaceType | InterfaceMixinType;
@@ -129,38 +136,53 @@ export function sort(idlBlocks: Map<string, IDLRootType[]>): IDLTypes
     return idlTypes;
 }
 
-export function mergeInterfaces(nodes: IDLRootType[]): IDLRootType
+export function mergePartialInterfaces(name: string, nodes: IDLRootType[]): IDLRootType
 {
     if (nodes.length === 1) {
         return nodes[0];
     }
 
-    const interfaceNode = nodes.find(node => node.type === "interface" && node.partial === false) as MergedInterfaceType;
-    if (!interfaceNode) {
+    const iface = nodes.find(node => node.type === "interface" && node.partial === false) as MergedInterfaceType;
+    if (!iface) {
         console.log(nodes);
-        throw Error("no non-partial interface node");
+        throw Error(`no non-partial interface node found for '${name}'`);
     }
 
-    interfaceNode.includes = [];
-
     nodes.forEach(node => {
-        if (node === interfaceNode) {
+        if (node === iface) {
             return;
         }
 
         switch(node.type) {
             case "interface":
                 if (node.inheritance) {
-                    console.warn(`partial interface ${node.name} with inheritance: ${node.inheritance}`);
+                    console.warn(`partial interface '${node.name}' with inheritance from '${node.inheritance}'`);
                 }
-                interfaceNode.members = interfaceNode.members.concat(node.members);
-                interfaceNode.extAttrs = interfaceNode.extAttrs.concat(node.extAttrs);
+                iface.members = iface.members.concat(node.members);
+                iface.extAttrs = iface.extAttrs.concat(node.extAttrs);
                 break;
             case "includes":
-                interfaceNode.includes.push(node.includes);
+                iface.includes = iface.includes || [];
+                iface.includes.push(node.includes);
                 break;
         }
     });
 
-    return interfaceNode;
+    return iface;
+}
+
+function mergeMixins(idlTypes: IDLTypes)
+{
+    const interfaces = idlTypes[EIDLType.Interface];
+
+    interfaces.forEach(iface => {
+        //console.log(`Interface: ${iface.name}, includes`, iface.includes);
+        iface.includes?.forEach(include => {
+            const mixin = idlTypes.all[include];
+            if (mixin && mixin.type === EIDLType.InterfaceMixin) {
+                iface.members = iface.members.concat(mixin.members);
+                iface.extAttrs = iface.extAttrs.concat(mixin.extAttrs);
+            }
+        });
+    });
 }
