@@ -1,5 +1,5 @@
 ---
-title: WebGPU quick reference
+title: WebGPU
 ---
 
 # WebGPU Quick Reference

@@ -231,7 +231,11 @@ export default class Generator
         }
 
         const argTypes = creator.operation.arguments.map(arg => arg.idlType);
-        const detail = this.getDetail(argTypes);
+
+        let detail:string = undefined;
+        if (!noDetails) {
+            detail = this.getDetail(argTypes);
+        }
         if (!detail) {
             return `<div class="idl-creator">${content}</div>`;
         }
@@ -250,7 +254,11 @@ export default class Generator
         }
 
         const argTypes = member.arguments.map(arg => arg.idlType);
-        const detail = this.getDetail(argTypes);
+
+        let detail:string = undefined;
+        if (!noDetails) {
+            detail = this.getDetail(argTypes);
+        }
         if (!detail) {
             return `<div class="idl-member idl-operation">${content}</div>`;
         }
@@ -324,7 +332,11 @@ export default class Generator
         //html.push('</div>');
 
         const content = html.join("");
-        const detail = this.getDetail([ member.idlType ]);
+
+        let detail:string = undefined;
+        if (!noDetails) {
+            detail = this.getDetail([ member.idlType ]);
+        }
         if (!detail) {
             return `<div class="idl-member idl-field">${content}</div>`;
         }
@@ -421,12 +433,6 @@ export default class Generator
         node.members.forEach(m => html.push(`<li class="idl-line">${this.getField(m, noDetails)}</li>`));
         html.push("</ul>");
         html.push('</div>');
-
-        // if (!noDetails) {
-        //     const memberTypes = node.members.map(m => m.idlType);
-        //     html.push(this.getDetail(memberTypes));    
-        // }
-
         return html.join("\n");
     }
 

@@ -100,8 +100,17 @@ button, input {
 header {
     background-color: $color-background-darker;
 
-    .col {
+    .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .header-brand {
         margin: 1em 0;
+    }
+    .header-icon svg {
+        fill: $color-text-dimmed;
+        height: 2em;
     }
 
     h1 {
@@ -113,9 +122,9 @@ header {
 }
 
 footer {
-    font-size: 0.9em;
+    font-size: 0.8em;
     background-color: darken($color-background, 8%);
-    color: $color-text-dimmed;
+    color: darken($color-text, 20%);
 
     .col {
         margin: 1em 0;
@@ -276,6 +285,9 @@ main {
         margin: 0;
         color: $color-text;
     }
+
+    summary {list-style: none}
+    summary::-webkit-details-marker {display: none; }
 
     summary, details {
         display: block;
