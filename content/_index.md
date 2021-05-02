@@ -15,9 +15,11 @@ WebGPU is a future web standard and JavaScript API for interfacing with the GPU,
 - [Wikipedia](https://en.wikipedia.org/wiki/WebGPU)
 - [Awesome WebGPU](https://github.com/mikbry/awesome-webgpu)
 
-## What's on this page?
+## What's on this website?
 
-This is a quick reference for WebGPU. While the [WebGPU specification](https://gpuweb.github.io/gpuweb/) aims to describe the API as accurately and detailed as possible, this reference provides an easy to navigate summary for daily use.
+This is a quick reference for WebGPU. While the [WebGPU specification](https://gpuweb.github.io/gpuweb/) aims to describe the API as accurately and detailed as possible, this reference provides an easy to navigate API summary for daily use.
+
+For now, this is not a detailed introduction or programming guide.
 
 ## Getting started
 

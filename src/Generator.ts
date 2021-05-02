@@ -122,7 +122,7 @@ export default class Generator
         return html.join("\n");
     }
 
-    getTypeRef(name: string)
+    protected getTypeRef(name: string)
     {
         const type = this.types.all[name];
         if (!type) {
@@ -152,7 +152,7 @@ export default class Generator
         }
     }
 
-    getInterface(node: MergedInterfaceType, noDetails: boolean)
+    protected getInterface(node: MergedInterfaceType, noDetails: boolean)
     {
         const html: string[] = [];
         html.push('<div class="idl-interface">');
@@ -171,7 +171,7 @@ export default class Generator
         return html.join("\n");
     }
 
-    getMemberList(node: MergedInterfaceType | InterfaceMixinType, noDetails: boolean): string
+    protected getMemberList(node: MergedInterfaceType | InterfaceMixinType, noDetails: boolean): string
     {
         const html: string[] = [];
         html.push('<ul>');
@@ -412,7 +412,7 @@ export default class Generator
         return isArray ? name : `<span class="idl-type idl-unknown">${name}</span>`;
     }
 
-    getMixin(node: InterfaceMixinType, noDetails = false): string
+    protected getMixin(node: InterfaceMixinType, noDetails = false): string
     {
         const html: string[] = [];
         html.push('<div class="idl-mixin">');
@@ -424,7 +424,7 @@ export default class Generator
         return html.join("\n");
     }
 
-    getDictionary(node: DictionaryType, noDetails = false): string
+    protected getDictionary(node: DictionaryType, noDetails = false): string
     {
         const html: string[] = [];
         html.push('<div class="idl-dictionary">');
@@ -436,7 +436,7 @@ export default class Generator
         return html.join("\n");
     }
 
-    getEnum(node: EnumType): string
+    protected getEnum(node: EnumType): string
     {
         const html: string[] = [];
         html.push('<div class="idl-enum">');
@@ -447,7 +447,7 @@ export default class Generator
         return html.join("\n");
     }
 
-    getEnumValueList(node: EnumType): string
+    protected getEnumValueList(node: EnumType): string
     {
         const html: string[] = [];
         html.push('<ul class="idl-enum-values">');
@@ -457,7 +457,7 @@ export default class Generator
         return html.join("\n");
     }
 
-    getEnumValueString(node: EnumType): string
+    protected getEnumValueString(node: EnumType): string
     {
         const html: string[] = [];
         html.push('<div class="idl-line idl-enum-values">');
@@ -466,7 +466,7 @@ export default class Generator
         return html.join("\n");
     }
 
-    getTypedef(node: TypedefType): string
+    protected getTypedef(node: TypedefType): string
     {
         const html: string[] = [];
         html.push('<div class="idl-typedef">');
@@ -494,7 +494,7 @@ export default class Generator
         return html.join("\n");
     }
 
-    getTypeName(node: AbstractBase, link: boolean)
+    protected getTypeName(node: AbstractBase, link: boolean)
     {
         const typeName = node["name"] || node["target"];
         if (!typeName) {

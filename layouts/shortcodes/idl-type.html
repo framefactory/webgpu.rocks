@@ -1,3 +1,0 @@
-{{ $bundle := .Site.GetPage "/types" }}
-{{ $page := $bundle.Resources.GetMatch (print (.Get 0) ".html") }}
-<div class="idl-block">{{ safeHTML $page.Content }}</div>

@@ -93,6 +93,7 @@ export function sort(nodes: Map<string, IDLRootType[]>): IDLTypes
     });
 
     mergeMixins(idlTypes);
+    mergeInherited(idlTypes);
 
     // collect creator functions
     typeNames.forEach(typeName => {
@@ -136,7 +137,7 @@ export function sort(nodes: Map<string, IDLRootType[]>): IDLTypes
     return idlTypes;
 }
 
-export function mergePartialInterfaces(name: string, nodes: IDLRootType[]): IDLRootType
+function mergePartialInterfaces(name: string, nodes: IDLRootType[]): IDLRootType
 {
     if (nodes.length === 1) {
         return nodes[0];
@@ -176,13 +177,29 @@ function mergeMixins(idlTypes: IDLTypes)
     const interfaces = idlTypes[EIDLType.Interface];
 
     interfaces.forEach(iface => {
-        //console.log(`Interface: ${iface.name}, includes`, iface.includes);
         iface.includes?.forEach(include => {
             const mixin = idlTypes.all[include];
             if (mixin && mixin.type === EIDLType.InterfaceMixin) {
-                iface.members = iface.members.concat(mixin.members);
-                iface.extAttrs = iface.extAttrs.concat(mixin.extAttrs);
+                iface.members = mixin.members.concat(iface.members as any[]);
+                iface.extAttrs = mixin.extAttrs.concat(iface.extAttrs);
             }
         });
+    });
+}
+
+function mergeInherited(idlTypes: IDLTypes)
+{
+    const ifaces = idlTypes[EIDLType.Interface];
+    const dicts = idlTypes[EIDLType.Dictionary];
+
+    const list: (MergedInterfaceType | DictionaryType)[] = ifaces.concat(dicts as any[]);
+
+    list.forEach(item => {
+        if (item.inheritance) {
+            const base = idlTypes.all[item.inheritance] as MergedInterfaceType;
+            if (base) {
+                item.members = base.members.concat(item.members as any[]);
+            }
+        }
     });
 }
