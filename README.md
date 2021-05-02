@@ -39,6 +39,7 @@ npm run build:site
 - WGSL reference
 - ...
 
-## :heart: Key 3rd party components
+## Key 3rd party components :heart:
 - [webidl2.js](https://github.com/w3c/webidl2.js)
 - [Bikeshed-to-ts](https://github.com/darionco/bikeshed-to-ts)
+- [Hugo](https://gohugo.io)
