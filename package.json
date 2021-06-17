@@ -1,6 +1,6 @@
 {
     "name": "webgpu.rocks",
-    "version": "0.2.1",
+    "version": "0.2.4",
     "description": "WebGPU resources and quick reference",
     "main": "bin/index.js",
     "scripts": {
@@ -31,10 +31,10 @@
         "source-map-support": "0.5.19"
     },
     "devDependencies": {
-        "@types/node": "^15.6.1",
+        "@types/node": "^15.12.2",
         "@types/webidl2": "^23.13.5",
         "bikeshed-to-ts": "^1.2.0",
-        "typescript": "^4.3.2",
+        "typescript": "^4.3.3",
         "webidl2": "^24.1.1"
     }
 }
