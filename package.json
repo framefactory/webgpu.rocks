@@ -31,7 +31,7 @@
         "source-map-support": "0.5.19"
     },
     "devDependencies": {
-        "@types/node": "^16.4.0",
+        "@types/node": "^16.6.2",
         "@types/webidl2": "^23.13.6",
         "bikeshed-to-ts": "^1.2.0",
         "typescript": "^4.3.5",
