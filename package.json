@@ -1,10 +1,11 @@
 {
     "name": "webgpu.rocks",
-    "version": "0.2.9",
+    "version": "0.2.10",
     "description": "WebGPU resources and quick reference",
     "main": "bin/index.js",
     "scripts": {
         "start": "tsc && node bin/index.js",
+        "deploy": "scp -r public/* hostpoint:~/www/webgpu.rocks",
         "build": "tsc && node bin/index.js && rm -rf public/* && hugo",
         "build:generator": "tsc",
         "build:site": "rm -rf public/* && hugo",
@@ -31,10 +32,10 @@
         "source-map-support": "0.5.21"
     },
     "devDependencies": {
-        "@types/node": "^16.11.9",
+        "@types/node": "^16.11.13",
         "@types/webidl2": "^23.13.6",
         "bikeshed-to-ts": "^1.2.0",
-        "typescript": "^4.5.2",
+        "typescript": "^4.5.4",
         "webidl2": "^24.2.0"
     }
 }
