@@ -4,6 +4,7 @@
 
 node_modules/
 bin/
+backup/
 public/
 content/reference/*
 !content/reference/_index.md
