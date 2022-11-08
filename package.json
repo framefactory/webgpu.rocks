@@ -34,7 +34,7 @@
   "devDependencies": {
     "@types/node": "^18.11.9",
     "@types/webidl2": "^23.13.6",
-    "bikeshed-to-ts": "^1.2.0",
+    "bikeshed-to-ts": "github:toji/bikeshed-to-ts",
     "typescript": "^4.8.4",
     "webidl2": "^24.2.2"
   }

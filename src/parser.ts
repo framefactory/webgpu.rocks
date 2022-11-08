@@ -1,9 +1,4 @@
-/**
- * WebGPU.rocks - Quick Reference
- * Source: https://github.com/darionco/bikeshed-to-ts/blob/main/src/parser.js
- *
- * License: MIT
- */
+// Source: https://github.com/toji/bikeshed-to-ts/blob/main/src/parser.js
 
 import { readFileLines } from  "bikeshed-to-ts/src/reader.js";
 import { matchEndDFN, matchEndIDL, matchStartDFN, matchStartIDL } from  "bikeshed-to-ts/src/regex.js";
@@ -57,12 +52,9 @@ async function parseBikeShedFile(filePath) {
             idlRecording = null;
 
             const idlBlock = parseIDL(idlText) as any;
-
             for (const idlNode of idlBlock) {
                 const typeName = idlNode.name || idlNode.target;
-                // if (typeName === "GPUSwapChain") {
-                //     console.log(JSON.stringify(idlNode.members, null, 4));
-                // }
+
                 if (!idlBlocks.has(typeName)) {
                     idlBlocks.set(typeName, []);
                 }

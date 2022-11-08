@@ -1,6 +1,6 @@
 /**
  * WebGPU.rocks - Quick Reference
- * Copyright 2021 Ralph Wiedemeier, Frame Factory GmbH
+ * Copyright 2022 Ralph Wiedemeier, Frame Factory GmbH
  *
  * License: MIT
  */
@@ -13,6 +13,7 @@ import * as path from "path";
 import * as mkdirp from "mkdirp";
 
 import { parseBikeShedFile } from "./parser";
+//import { processComments } from "./commenter";
 import { sort } from "./sorter";
 import Generator, { folderTitles } from "./Generator";
 
@@ -28,11 +29,16 @@ function prettyPrint(filePath: string, data: any)
     const specPath = path.resolve(__dirname, "../libs/gpuweb/spec/index.bs")
     const blocks = await parseBikeShedFile(specPath);
 
+    const idlBlocks = Array.from(blocks.idl);
+    const dfnBlocks = Array.from(blocks.dfn);
+    //const commentDefinitions = processComments(dfnBlocks);
+
     const dataPath = path.resolve(__dirname, "../data");
     mkdirp.sync(dataPath);
     prettyPrint(path.resolve(dataPath, "raw-nodes.json"), {
-        idl: Array.from(blocks.idl),
-        dfn: Array.from(blocks.dfn),
+        idl: idlBlocks,
+        dfn: dfnBlocks,
+        //comments: commentDefinitions,
         exposed: Array.from(blocks.exposed.values()),
     });
 
