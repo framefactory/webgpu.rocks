@@ -2,7 +2,7 @@
 title: WebGPU
 ---
 
-# WebGPU Quick Reference
+# WebGPU API Reference
 
 ## What is WebGPU?
 
