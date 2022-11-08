@@ -21,6 +21,7 @@ import {
     TypedefType,
     InterfaceType,
     IDLInterfaceMemberType,
+    IDLNamespaceMemberType,
     DeclarationMemberType,
     FieldType,
 } from "webidl2";
@@ -308,20 +309,23 @@ export default class Generator
     protected getField(member: FieldType, noDetails = false): string
     {
         const html: string[] = [];
-        const def = member.default as any;
+        const defaultDesc = member.default as any;
         let defaultValue: any = undefined;
-        if (def) {
-            if (def.type === "string") {
-                defaultValue = `'${def.value}'`;
+        if (defaultDesc) {
+            if (defaultDesc.type === "boolean") {
+                defaultValue = `'${defaultDesc.value}'`;
             }
-            else if (def.type === "dictionary") {
-                defaultValue = "{ &hellip; }";
+            else if (defaultDesc.type === "string") {
+                defaultValue = `'${defaultDesc.value}'`;
             }
-            else if (def.type === "sequence") {
+            else if (defaultDesc.type === "dictionary") {
+                defaultValue = "{}";
+            }
+            else if (defaultDesc.type === "sequence") {
                 defaultValue = "[]";
             }
             else {
-                defaultValue = def.value ?? def.type;
+                defaultValue = defaultDesc.value ?? defaultDesc.type;
             }
         }
 
@@ -429,9 +433,14 @@ export default class Generator
         const html: string[] = [];
         html.push('<div class="idl-dictionary">');
         html.push(`<h2>${node.name}</h2>`);
-        html.push('<ul>');
-        node.members.forEach(m => html.push(`<li class="idl-line">${this.getField(m, noDetails)}</li>`));
-        html.push("</ul>");
+        if (node.members.length > 0) {
+            html.push('<ul>');
+            node.members.forEach(m => html.push(`<li class="idl-line">${this.getField(m, noDetails)}</li>`));
+            html.push("</ul>");    
+        }
+        else {
+            html.push('<div class="idl-line">(no members)</div>');
+        }
         html.push('</div>');
         return html.join("\n");
     }
@@ -472,22 +481,23 @@ export default class Generator
         html.push('<div class="idl-typedef">');
         html.push(`<h2>${node.name}</h2>`);
 
+        html.push(`<div class="idl-line"><div class="idl-member"><span class="idl-keyword">typedef</span> <span class="idl-type idl-typedef">${node.name}</span> = ${this.getType(node.idlType)}</div></div>`);
+
         if (node.name.endsWith("Flags")) {
-            const flagTypeName = node.name.substr(0, node.name.length - 5);
+            const flagTypeName = node.name.substring(0, node.name.length - 5);
             const flagNode = this.types.all[flagTypeName];
 
-            if (flagNode && flagNode.type === "interface") {
+            if (flagNode && flagNode.type === "namespace") {
                 html.push('<ul>');
         
-                flagNode.members.forEach((member: ConstantMemberType) => {
-                    html.push(`<li class="idl-line"><div class="idl-member idl-const"><span class="idl-type idl-typedef">${flagTypeName}</span>.${this.getConst(member)}</div></li>`);
+                flagNode.members.forEach((member: any) => {
+                    if (member.type === "const") {
+                        html.push(`<li class="idl-line"><div class="idl-member idl-flag"><span class="idl-type idl-typedef">${flagTypeName}</span>.${this.getConst(member as any)}</div></li>`);
+                    }
                 });
 
                 html.push("</ul>");
             }
-        }
-        else {
-            html.push(`<div class="idl-line"><div class="idl-member"><span class="idl-keyword">typedef</span> <span class="idl-type idl-typedef">${node.name}</span> = ${this.getType(node.idlType)}</div></div>`);
         }
 
         html.push('</div>');

@@ -5,40 +5,45 @@
 
 @import "./bootstrap/bootstrap-reboot";
 @import "./bootstrap/bootstrap-grid";
- 
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,700;1,300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@;400;600;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,700;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;500&display=swap');
 
-$color-text: #e8e8e8;
-$color-text-dim: #c1cfdb;
-$color-text-dimmed: #b9c2ca;
+$color-primary: hsl(42, 21%, 60%);
+$color-title: hsl(42, 21%, 60%);
+
+$color-text: hsl(204, 12%, 75%);
+$color-text-light: #f0f0f0;
+$color-text-link: $color-primary;
+$color-text-link-hover: #d0d0d0;
+$color-text-dark: darken($color-text, 5%);
+$color-text-darker: darken($color-text, 15%);
 $color-text-transparent: transparentize($color-text, 0.4);
-$color-background: #34373a;
-$color-background-dark: darken($color-background, 5%);
-$color-background-darker: darken($color-background, 10%);
+
+$color-background: hsl(204, 12%, 16%);
+$color-background-dark: darken($color-background, 4%);
+$color-background-darker: darken($color-background, 8%);
 $color-background-light: lighten($color-background, 5%);
 $color-background-lighter: lighten($color-background, 10%);
 $color-background-lightest: lighten($color-background, 15%);
 
-$color-primary: #ff4454;
-$color-primary-light: lighten($color-primary, 10%);
+$color-interface: hsl(42, 21%, 33%);
+$color-dictionary: #335873;
+$color-enum: #414a7a;
+$color-typedef: #494370;
 
-$color-class-title: #2a6771;
-$color-class: transparentize(#2f4748, 0.3);
+$color-keyword: #c8e4ff;
+$color-variable: #d0d0d0; // #bee28f;
+$color-default: #276441;
+$color-required: #8a2a2a;
 
-$color-interface: #726748;
-$color-dictionary: #78426d;
-$color-typedef: #3c3c82;
-$color-enum: #3c6182;
-
-$color-type: #ff848e;
-$color-variable: #a3bed6; // #bee28f;
-$color-constructor: #cb9b40;
-$color-attribute: #4069d2;
-$color-operation: #577b44;
-$color-field: #a94595;
+$color-constructor: #cb985d;
+$color-attribute: #6279a4;
+$color-operation: #89a76f;
+$color-field: #727883;
 
 @mixin font-idl-mono {
     font-family: 'Inconsolata', monospace;
@@ -59,13 +64,12 @@ $color-field: #a94595;
 body {
     background-color: $color-background;
     color: $color-text;
-    font-family: "Work Sans", "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
-    font-size: 1.1em;
+    font-family: "Poppins", "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
+    font-size: 1.05em;
 }
 
 a, a:hover, a:visited {
-    text-decoration: none;  
-    color: inherit;
+    text-decoration: none;
 }
 
 img {
@@ -109,15 +113,19 @@ header {
         margin: 1em 0;
     }
     .header-icon svg {
-        fill: $color-text-dimmed;
+        fill: $color-text-darker;
         height: 2em;
     }
 
     h1 {
         margin: 0;
-        color: $color-primary;
+        color: $color-title;
         font-size: 2em;
         font-weight: bold;
+
+        a {
+            color: inherit;
+        }
     }
 }
 
@@ -129,6 +137,13 @@ footer {
     .col {
         margin: 1em 0;
     }
+
+    a, a:visited {
+        color: $color-text-link;
+    }
+    a:hover {
+        color: $color-text-link-hover;
+    }
 }
 
 main {
@@ -136,8 +151,11 @@ main {
         padding-bottom: 2em;
     }
 
+    a, a:visited {
+        color: $color-text-link;
+    }
     a:hover {
-        color: $color-primary;
+        color: $color-text-link-hover;
     }
 
     a:hover code {
@@ -145,16 +163,16 @@ main {
     }
     code {
         @include font-idl-mono;
-        font-size: 1em;
-        font-weight: 300;
-        color: $color-text-dim;
+        font-size: 1.1em;
+        font-weight: 700;
+        color: $color-primary;
         background-color: $color-background-dark;
         padding: 1px 4px;
         border-radius: 0.25em;
     }
 
     h1 {
-        color: $color-text-dim;
+        color: $color-text-darker;
         font-weight: bold;
         font-size: 2.6em;
         margin: 0.5em 0;        
@@ -165,26 +183,10 @@ main {
         margin: 1.6em 0 0.8em 0;
         color: $color-primary;
     }
-
-    // ul {
-    //     list-style: none;
-    //     padding-left: 1em;
-    // }
-
-    // li {
-    //     margin: 0.2em 0;
-    //     //padding-left: 0;
-
-    //     &:before {
-    //         content: "*";
-    //         position: relative;
-    //         top: 0.1em;
-    //         padding-right: 0.5em;
-    //         font-size: 1.2em;
-    //         color: $color-text-dimmed;
-    //     }
-    // }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// REFERENCE
 
 .reference {
     display: flex;
@@ -209,13 +211,20 @@ main {
     overflow: hidden auto;
     flex: 0 0 auto;
     width: 15em;
-    background-color: $color-background-dark;
+    background-color: $color-background;
     font-size: 0.95rem;
 
+    li:hover {
+        color: $color-text-light;
+        background-color: $color-background-light;
+    }
+    a, a:hover, a:visited {
+        color: inherit;
+    }
     h2 {
         @include font-idl-mono;
         margin: 0;
-        padding: 2px 0.5em;
+        padding: 2px 0.25em;
         font-size: 1.5em;
         font-weight: 500;
         background-color: $color-interface;
@@ -227,7 +236,7 @@ main {
         padding: 0 0.25em;
         list-style: none;
         line-height: 1.7em;
-        color: $color-text-dimmed;
+        color: $color-text-dark;
     }
 }
 
@@ -255,7 +264,7 @@ main {
     width: 0.6em;
     height: 0.6em;
     margin: 0 0.5em 0 0.25em;
-    border-radius: 3px;
+    border-radius: 100%;
 }
 
 .idl-block {
@@ -294,7 +303,7 @@ main {
     }
 
     details[open] {
-        background-color: lighten($color-background, 2%);
+        background-color: $color-background-light;
         overflow: hidden;
     }
 
@@ -316,11 +325,15 @@ main {
     }
 
     .idl-line {
-        background-color: darken($color-background, 12%);
+        background-color: $color-background-darker;
 
         &:nth-child(even) {
-            background-color: darken($color-background, 8%);
+            background-color: $color-background-dark;
         }
+    }
+
+    .idl-creator {
+        background-color: mix($color-background, $color-interface, 75%);                
     }
 
     .idl-creator:before {
@@ -343,19 +356,22 @@ main {
         content: "";
         background-color: $color-field;
     }
+    .idl-flag:before {
+        @include idl-badge;
+        content: "";
+        background-color: $color-typedef;
+    }
 
     .idl-enum-values {
         //font-size: 0.9em;
     }
 
     .idl-required {
-        @include font-idl-condensed;
+        font-size: 0.9em;
         margin: 0 0.75em;
-        padding: 0 0.25em;
+        padding: 0 0.25em 0.15em 0.25em;
         border-radius: 0.25em;
-        background-color: #9c2b21;
-        font-size: 0.8em;
-        text-transform: uppercase;
+        background-color: $color-required;
     }
 
     .idl-default {
@@ -364,7 +380,7 @@ main {
         margin: 0 0.75em;
         padding: 0.05em 0.25em;
         border-radius: 0.25em;
-        background-color: #324d42;
+        background-color: $color-default;
     }
 }
 
@@ -373,7 +389,8 @@ div.idl-interface {
         background-color: $color-interface;
     }
     .idl-creators {
-        background-color: darken(mix($color-interface, $color-background, 20%), 5%);
+        //background-color: darken(mix($color-interface, $color-background, 20%), 5%);
+        background-color: red;
     }
 }
 
@@ -390,7 +407,7 @@ div.idl-enum h2 {
 }
 
 .idl-type, .idl-keyword {
-    color: $color-type;
+    color: $color-keyword;
 }
 .idl-var {
     color: $color-variable;
@@ -401,10 +418,10 @@ div.idl-enum h2 {
     padding-right: 0.125em;
 }
 .idl-type.idl-interface {
-    color: lighten(saturate($color-interface, 25%), 40%);
+    color: lighten(saturate($color-interface, 20%), 40%);
 }
 .idl-type.idl-dictionary {
-    color: lighten(saturate($color-dictionary, 35%), 50%);
+    color: lighten(saturate($color-dictionary, 100%), 45%);
 }
 .idl-type.idl-typedef {
     color: lighten(saturate($color-typedef, 65%), 52%);
