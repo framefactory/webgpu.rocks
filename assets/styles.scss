@@ -3,16 +3,19 @@
  * Static Hugo Website
  */
 
-@import "./bootstrap/bootstrap-reboot";
-@import "./bootstrap/bootstrap-grid";
+@import "../node_modules/bootstrap/scss/bootstrap-reboot";
+//@import "../node_modules/bootstrap/scss/bootstrap";
+//@import "../node_modules/bootstrap/scss/bootstrap-reboot";
+//@import "../node_modules/bootstrap/scss/bootstrap-grid";
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap');
 //@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,700;1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;500&display=swap');
 
 $color-primary: hsl(42, 21%, 60%);
+$color-secondary: hsl(212, 63%, 32%);
 $color-title: hsl(42, 21%, 60%);
 
 $color-text: hsl(204, 12%, 75%);
@@ -30,6 +33,7 @@ $color-background-light: lighten($color-background, 5%);
 $color-background-lighter: lighten($color-background, 10%);
 $color-background-lightest: lighten($color-background, 15%);
 
+$color-wgsl: $color-secondary;
 $color-interface: hsl(42, 21%, 33%);
 $color-dictionary: #335873;
 $color-enum: #414a7a;
@@ -78,6 +82,7 @@ img {
 
 button, input {
     background-color: transparent;
+    color: inherit;
     border: none;
 }
 
@@ -92,58 +97,75 @@ button, input {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// PAGE SECTIONS
 
-.section {
+.page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+header, footer {
+    display: flex;
+    align-items: center;
+    padding: 0.5em 0.5em 0.5em 0.25em;
+    background-color: $color-background-darker;
+    color: $color-text-darker;
+
+    img, svg {
+        height: 2em;
+        fill: $color-text-dark;
+    }
+    span {
+        margin: 0 1em;
+    }
+
+    a, a:visited {
+        color: inherit;
+    }
+    a:hover {
+        color: $color-text-light;
+    }
+    .spacer {
+        flex: 1 1 auto;
+    }
 }
 
 header {
-    background-color: $color-background-darker;
+    .option {
+        align-self: stretch;
+        margin: 0 0.5em;
+        padding: 0;
+        border-bottom: 4px solid transparent;
+        &.selected {
+            color: $color-text;
+            border-bottom: 4px solid lighten($color-secondary, 15%);
+        }
+    }
 
-    .header-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .header-logo img {
-        margin: 0.8em 0;
-        height: 2em;
-    }
-    .header-logo {
-        margin-right: 2em;
-    }
-    .header-item {
-        margin: 0.4em 0.5em 0 0.5em;
-        color: $color-text-darker;
-        font-size: 1em;
-        font-weight: 400;
-    }
-    .header-icon svg {
-        fill: $color-text-darker;
-        height: 2em;
-    }
-    .spacer {
-        flex-grow: 1;
+    .menu svg {
+        margin-left: 2em;
+        height: 1.3em;
     }
 }
 
 footer {
-    font-size: 0.8em;
-    background-color: darken($color-background, 8%);
     color: darken($color-text, 20%);
-
-    .col {
-        margin: 1em 0;
-    }
-
-    a, a:visited {
-        color: $color-text-link;
-    }
-    a:hover {
-        color: $color-text-link-hover;
-    }
+    font-size: 0.8em;
 }
 
-main {
+.main {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: stretch;
+    min-height: 0;
+
     &.section {
         padding-bottom: 2em;
     }
@@ -182,34 +204,18 @@ main {
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// REFERENCE
-
-.reference {
-    display: flex;
-    align-items: stretch;
-    min-height: 0;
-
-    .content {
-        overflow: hidden auto;
-        padding: 1em 2em;
-
-        ul {
-            list-style: square;
-        }
-        li {
-            font-size: 0.95em;
-            margin-bottom: 0.25em;
-        }
-    }
-}
-
-.sidebar-toc {
-    overflow: hidden auto;
+.sidebar {
     flex: 0 0 auto;
     width: 16em;
+    display: flex;
+    flex-direction: column;
     background-color: $color-background;
+    border-right: 1px solid $color-background-lighter;
     font-size: 0.95rem;
+}
+
+.toc {
+    overflow: hidden auto;
 
     li:hover {
         color: $color-text-light;
@@ -224,7 +230,7 @@ main {
         padding: 2px 0.25em;
         font-size: 1.5em;
         font-weight: 500;
-        background-color: $color-interface;
+        background-color: $color-wgsl;
         color: $color-text;
     }
     ul {
@@ -237,24 +243,67 @@ main {
     }
 }
 
-.idl-block {
-    overflow: hidden auto;
+.content {
     flex: 1 1 auto;
+    display: flex;
 }
 
-.fullsize {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    overflow: hidden;
+.article {
+    flex: 1 1 auto;
+    overflow: hidden auto;
+    padding: 1em 2em;
+
+    ul {
+        list-style: square;
+    }
+    li {
+        font-size: 0.95em;
+        margin-bottom: 0.25em;
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// RESPONSIVE MENU
+
+button.menu {
+    display: none;
+}
+    
+.toggle-menu.icon-bars {
+    display: block;
+}
+.toggle-menu.icon-times {
+    display: none;
+}
+
+@media(max-width: 768px) {
+    button.menu {
+        display: block;
+    }
+
+    .sidebar {
+        flex: 1 1 auto;
+        display: none;    
+    }
+
+    .menu-on {
+        &.sidebar {
+            display: flex;
+        }
+        &.content {
+            display: none;
+        }
+        &.icon-bars {
+            display: none;
+        }
+        &.icon-times {
+            display: block;
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// REFERENCE
 
 @mixin idl-badge {
     display: inline-block;
@@ -265,6 +314,9 @@ main {
 }
 
 .idl-block {
+    flex: 1 1 auto;
+    overflow: hidden auto;
+
     @include font-idl-mono;
     box-shadow: 0 0 1.2em 0 rgba(black, 0.5);
     font-size: 0.95rem;

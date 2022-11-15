@@ -1,10 +1,16 @@
-{{ define "main" }}
-    <main class="reference">
-        <div class="sidebar-toc">
-            {{ partial "ref-toc.html" . }}
-        </div>    
-        <div class="idl-block">
-            {{ .Content }}
+{{ define "body" }}
+<div class="page">
+    {{ partial "header.html" . }}
+    <div class="main">
+        <div class="sidebar toggle-menu">
+            {{ partial "sidebar.html" . }}
         </div>
-    </main>
+        <div class="content toggle-menu">
+            <div class="idl-block">
+                {{ .Content }}
+            </div>
+        </div>
+    </div>
+    {{ partial "footer.html" . }}
+</div>
 {{ end }}

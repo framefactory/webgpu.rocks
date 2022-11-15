@@ -1,4 +1,5 @@
 {{ define "main" }}
+    {{ partial "header.html" . }}
     <main class="reference">
         <div class="sidebar-toc">
             {{ partial "ref-toc.html" . }}
@@ -7,4 +8,5 @@
             {{ .Content }}
         </div>
     </main>
+    {{ partial "footer.html" . }}
 {{ end }}

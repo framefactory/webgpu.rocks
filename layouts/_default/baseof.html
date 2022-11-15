@@ -8,12 +8,19 @@
 
     <!-- <link rel="icon" type="image/png" href="/favicon-32.png" /> -->
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&Inter+Tight&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;500&display=swap" rel="stylesheet">
+
     <!-- Styles -->
     {{ $style := resources.Get "styles.scss" | toCSS | minify }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
     <title>{{ block "title" . }}
-        {{ .Page.Title }} - WebGPU quick reference and documentation
+        {{ .Title }} - {{ .Site.Title }}
         {{ end }}</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -26,15 +33,17 @@
     </script>
 </head>
 <body>
-    <div class="fullsize">
-    {{ block "header" . }}
-        {{ partial "header.html" . }}
+    {{ block "body" . }}
     {{ end }}
-    {{ block "main" . }}
-    {{ end }}
-    {{ block "footer" . }}
-        {{ partial "footer.html" . }}
-    {{ end }}
-    </div>
+    <script>
+        function toggleMenu() {
+            console.log("toogleMenu()");
+            const elements = document.getElementsByClassName("toggle-menu");
+            for (let i = 0; i < elements.length; ++i) {
+                console.log(elements[i]);
+                elements[i].classList.toggle("menu-on");
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+{{ if eq .Page.Type "wgsl" }}
+    <div class="toc">
+        {{ range where .Site.Sections "Type" "wgsl" }}
+            {{ range .Page.Sections }}
+                <h2>{{ .Title }}</h2>
+                <ul>
+                {{ range .Pages }}
+                    <li>
+                        <a href={{ .RelPermalink }} _target="self">{{ .Title }}</a>
+                    </li>
+                {{ end }}
+                </ul>
+            {{ end }}
+        {{ end }}
+    </div>
+{{ else }}
+    <div class="toc">
+        {{ $bundle := .Site.GetPage "/reference/toc" }}
+        {{ $page := $bundle.Resources.GetMatch "toc.html" }}
+        {{ safeHTML $page.Content }}
+    </div>
+{{ end }}

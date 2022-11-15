@@ -1,22 +1,22 @@
 {
   "name": "webgpu.rocks",
-  "version": "0.3.0",
+  "version": "0.4.0",
+  "license": "MIT",
   "description": "WebGPU resources and quick reference",
-  "main": "bin/index.js",
+  "author": {
+    "name": "Ralph Wiedemeier",
+    "email": "ralph@framefactory.ch"
+  },
+  "homepage": "https://github.com/framefactory/webgpu.rocks#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/framefactory/webgpu.rocks.git"
   },
-  "keywords": [
-    "WebGPU",
-    "graphics"
-  ],
-  "author": "Ralph Wiedemeier",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/framefactory/webgpu.rocks/issues"
   },
-  "homepage": "https://github.com/framefactory/webgpu.rocks#readme",
+  "packageManager": "pnpm@7.15.0",
+  "main": "bin/index.js",
   "scripts": {
     "start": "tsc && node bin/index.js",
     "deploy": "scp -r public/* hostpoint:~/www/webgpu.rocks",
@@ -28,8 +28,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "bootstrap": "^5.2.2",
+    "@popperjs/core": "^2.11.6",
     "mkdirp": "^1.0.4",
-    "source-map-support": "0.5.21"
+    "source-map-support": "^0.5.21"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",

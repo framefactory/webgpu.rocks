@@ -1,3 +1,0 @@
-{{ $bundle := .Site.GetPage "/reference/toc" }}
-{{ $page := $bundle.Resources.GetMatch "toc.html" }}
-{{ safeHTML $page.Content }}
