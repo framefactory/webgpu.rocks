@@ -1,5 +1,5 @@
 {{ if eq .Page.Type "wgsl" }}
-    <div class="toc">
+    <div class="toc wgsl">
         {{ range where .Site.Sections "Type" "wgsl" }}
             {{ range .Page.Sections }}
                 <h2>{{ .Title }}</h2>
@@ -14,7 +14,7 @@
         {{ end }}
     </div>
 {{ else }}
-    <div class="toc">
+    <div class="toc webgpu">
         {{ $bundle := .Site.GetPage "/reference/toc" }}
         {{ $page := $bundle.Resources.GetMatch "toc.html" }}
         {{ safeHTML $page.Content }}

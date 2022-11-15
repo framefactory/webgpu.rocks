@@ -1,0 +1,15 @@
+{{ define "body" }}
+<div class="page">
+    {{ partial "header.html" . }}
+    <div class="main">
+        <div class="sidebar toggle-menu">
+            {{ partial "sidebar.html" . }}
+        </div>
+        <div class="content toggle-menu">
+            <div class="reference">
+                {{ .Content }}
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

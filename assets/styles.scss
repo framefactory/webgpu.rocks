@@ -4,15 +4,6 @@
  */
 
 @import "../node_modules/bootstrap/scss/bootstrap-reboot";
-//@import "../node_modules/bootstrap/scss/bootstrap";
-//@import "../node_modules/bootstrap/scss/bootstrap-reboot";
-//@import "../node_modules/bootstrap/scss/bootstrap-grid";
-
-//@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap');
-//@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,700;1,300&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;500&display=swap');
 
 $color-primary: hsl(42, 21%, 60%);
 $color-secondary: hsl(212, 63%, 32%);
@@ -34,6 +25,8 @@ $color-background-lighter: lighten($color-background, 10%);
 $color-background-lightest: lighten($color-background, 15%);
 
 $color-wgsl: $color-secondary;
+$color-function: #eadb8e;
+$color-code: hsl(43, 34%, 67%);
 $color-interface: hsl(42, 21%, 33%);
 $color-dictionary: #335873;
 $color-enum: #414a7a;
@@ -64,12 +57,21 @@ $color-field: #727883;
     font-weight: 400;
 }
 
+////////////////////////////////////////////////////////////////////////////////
 
 body {
     background-color: $color-background;
     color: $color-text;
-    font-family: "Poppins", "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
+    font-family: "Source Sans Pro", "Poppins", "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
     font-size: 1.05em;
+}
+
+strong {
+    font-weight: 700;
+}
+
+code {
+    @include font-idl-mono;
 }
 
 a, a:hover, a:visited {
@@ -94,6 +96,16 @@ button, input {
 }
 ::-webkit-scrollbar-thumb {
     background-color: $color-background-lighter;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// CHROMA SYNTAX HIGHLIGHTING
+
+@import "./syntax-monokai";
+
+.chroma {
+    display: block;
+    color: $color-text-dark;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -180,28 +192,6 @@ footer {
     a:hover code {
         color: $color-primary;
     }
-    code {
-        @include font-idl-mono;
-        font-size: 1.1em;
-        font-weight: 700;
-        color: $color-primary;
-        background-color: $color-background-dark;
-        padding: 1px 4px;
-        border-radius: 0.25em;
-    }
-
-    h1 {
-        color: $color-text-darker;
-        font-weight: bold;
-        font-size: 2.6em;
-        margin: 0.5em 0;        
-    }
-
-    h2 {
-        font-size: 1.5em;
-        margin: 1.6em 0 0.8em 0;
-        color: $color-primary;
-    }
 }
 
 .sidebar {
@@ -214,6 +204,7 @@ footer {
     font-size: 0.95rem;
 }
 
+/* Sidebar table of contents */
 .toc {
     overflow: hidden auto;
 
@@ -243,11 +234,78 @@ footer {
     }
 }
 
+.toc.wgsl {
+    ul {
+        //@include font-idl-mono;
+    }
+}
+
 .content {
     flex: 1 1 auto;
     display: flex;
 }
 
+/* WGSL reference pages */
+.reference {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 0.5em;
+    font-weight: 300;
+
+    h1, h2, h3 {
+        @include font-idl-mono;
+    }
+    h1 + h2 {
+        margin: 0;
+    }
+    h2 + p {
+        margin-top: 0.5em;
+    }
+    h1 {
+        font-size: 1.3em;
+    }
+    h2 {
+        font-size: 1.5em;
+        margin: 0.5em 0 0 0;
+        padding: 0 0.15em;
+        background-color: $color-wgsl;
+        color: $color-text;
+    }
+    h3 {
+        font-size: 1em;
+        font-weight: 600;
+    }
+    p {
+        font-size: 0.88em;
+        padding: 0;
+        margin: 0 0 0.5em 0;
+
+        code {
+            padding: 0 0.15em;
+            font-size: 1.05em;
+            color: $color-code;
+            background-color: mix($color-background, $color-background-dark, 50);
+            border-radius: 4px;
+        }
+    }
+    .func .chroma {
+        margin: 0.75em 0 0.25em 0;
+        padding: 0 0.25em;
+        white-space: inherit;
+        
+        .nf {
+            font-size: 1.3em;
+            color: $color-function;
+            padding-right: 0.25em;
+        }    
+    }
+    .wgsl .chroma {
+        margin: 0.75em 0 0.25em 0;
+        padding: 0 0.25em;
+    }
+}
+
+/* Text articles */
 .article {
     flex: 1 1 auto;
     overflow: hidden auto;
@@ -259,6 +317,28 @@ footer {
     li {
         font-size: 0.95em;
         margin-bottom: 0.25em;
+    }
+
+    code {
+        font-size: 1.1em;
+        font-weight: 700;
+        color: $color-primary;
+        background-color: $color-background-dark;
+        padding: 1px 4px;
+        border-radius: 0.25em;
+    }
+
+    h1 {
+        color: $color-text-darker;
+        font-weight: bold;
+        font-size: 2.6em;
+        margin: 0.5em 0;        
+    }
+
+    h2 {
+        font-size: 1.5em;
+        margin: 1.6em 0 0.8em 0;
+        color: $color-primary;
     }
 }
 
