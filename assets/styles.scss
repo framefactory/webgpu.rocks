@@ -57,6 +57,11 @@ $color-field: #727883;
     font-weight: 400;
 }
 
+@mixin font-poppins {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 body {
@@ -150,9 +155,12 @@ header, footer {
 }
 
 header {
+    @include font-poppins;
+
     .option {
         align-self: stretch;
-        margin: 0 0.5em;
+        margin: 0.2em 0.5em 0 0.5em;
+        height: 1.8em;
         padding: 0;
         border-bottom: 4px solid transparent;
         &.selected {
@@ -162,12 +170,13 @@ header {
     }
 
     .menu svg {
-        margin-left: 2em;
+        margin-left: 1em;
         height: 1.3em;
     }
 }
 
 footer {
+    padding-right: 1em;
     color: darken($color-text, 20%);
     font-size: 0.8em;
 }
@@ -251,8 +260,9 @@ footer {
     overflow: auto;
     padding: 0.5em;
     font-weight: 300;
+    font-size: 0.9em;
 
-    h1, h2, h3 {
+    h1, h2 {
         @include font-idl-mono;
     }
     h1 + h2 {
@@ -266,33 +276,46 @@ footer {
     }
     h2 {
         font-size: 1.5em;
-        margin: 0.5em 0 0 0;
+        margin: 0.8em 0 0 0;
         padding: 0 0.15em;
         background-color: $color-wgsl;
         color: $color-text;
     }
     h3 {
-        font-size: 1em;
-        font-weight: 600;
+        margin: 0.5em 0 0 0;
+        font-size: 1.1em;
+    }
+    code {
+        font-size: 1.05em;
+        color: $color-code;
     }
     p {
-        font-size: 0.88em;
         padding: 0;
         margin: 0 0 0.5em 0;
 
         code {
             padding: 0 0.15em;
-            font-size: 1.05em;
-            color: $color-code;
             background-color: mix($color-background, $color-background-dark, 50);
             border-radius: 4px;
         }
     }
-    .func .chroma {
-        margin: 0.75em 0 0.25em 0;
-        padding: 0 0.25em;
-        white-space: inherit;
-        
+    table {
+        width: 100%;
+    }
+    tr:nth-child(odd) {
+        background: $color-background-dark;
+    }
+    table tr th:empty {
+        display: none;
+    }
+
+    .func {
+        margin-bottom: 1em;
+        .chroma {
+            margin: 0.75em 0 0.25em 0;
+            padding: 0 0.25em;
+            white-space: inherit;
+        }        
         .nf {
             font-size: 1.3em;
             color: $color-function;
@@ -303,13 +326,36 @@ footer {
         margin: 0.75em 0 0.25em 0;
         padding: 0 0.25em;
     }
+
+    .badge {
+        padding: 0 0.25em;
+        background-color: $color-background-lightest;
+        border-radius: 5px;
+        @include font-idl-mono;
+    }
 }
 
 /* Text articles */
 .article {
     flex: 1 1 auto;
     overflow: hidden auto;
-    padding: 1em 2em;
+    padding: 1em;
+
+    h1, h2 {
+        @include font-idl-mono;
+    }
+
+    h1 {
+        color: $color-text;
+        font-size: 2em;
+        margin: 0.5em 0;        
+    }
+
+    h2 {
+        font-size: 1.5em;
+        margin: 1.5em 0 0.5em 0;
+        color: $color-primary;
+    }
 
     ul {
         list-style: square;
@@ -320,25 +366,11 @@ footer {
     }
 
     code {
-        font-size: 1.1em;
-        font-weight: 700;
-        color: $color-primary;
+        font-size: 1.05em;
+        color: $color-code;
         background-color: $color-background-dark;
-        padding: 1px 4px;
-        border-radius: 0.25em;
-    }
-
-    h1 {
-        color: $color-text-darker;
-        font-weight: bold;
-        font-size: 2.6em;
-        margin: 0.5em 0;        
-    }
-
-    h2 {
-        font-size: 1.5em;
-        margin: 1.6em 0 0.8em 0;
-        color: $color-primary;
+        padding: 0 0.25em;
+        border-radius: 4px;
     }
 }
 

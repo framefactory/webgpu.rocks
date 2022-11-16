@@ -6,12 +6,14 @@ weight: 100
 # Numeric built-in functions
 
 ## Trigonometric
-{{< func "fn degrees(e1: T) -> T" >}}
-Converts radians to degrees, approximating `e1 × 180 ÷ π`.
+For all functions in this section, if the argument is a vector, the result
+is calculated **per component**.
+{{< func "fn degrees(e: T) -> T" >}}
+Converts radians to degrees, approximating `e × 180 ÷ π`.
 {{< /func >}}
 
-{{< func "fn radians(e1: T) -> T" >}}
-Converts degrees to radians, approximating `e1 × π ÷ 180`.
+{{< func "fn radians(e: T) -> T" >}}
+Converts degrees to radians, approximating `e × π ÷ 180`.
 {{< /func >}}
 
 {{< func "fn cos(e: T) -> T" >}}
@@ -63,19 +65,15 @@ Returns the inverse hyperbolic tangent of `e`, as a hyperbolic angle in radians.
 {{< /func >}}
 
 {{< func "fn atan2(y: T, x: T) -> T" >}}
-Returns an angle, in radians, in the interval [-π, π] whose tangent is `y÷x`.
+Returns an angle, in radians, in the interval `[-π, π]` whose tangent is `y÷x`.
 {{< /func >}}
 
-{{< func "fn exp(e1: T) -> T" >}}
-Returns the natural exponentiation of `e1`. Component-wise when `T` is a vector. 
+{{< func "fn exp(e: T) -> T" >}}
+Returns the natural exponentiation of `e`. Component-wise when `T` is a vector. 
 {{< /func >}}
 
 {{< func "fn exp2(e: T) -> T" >}}
 Returns 2 raised to the power `e`.
-{{< /func >}}
-
-{{< func "fn inverseSqrt(e: T) -> T" >}}
-Returns the reciprocal of `sqrt(e)`.
 {{< /func >}}
 
 {{< func "fn log(e: T) -> T" >}}
@@ -92,6 +90,10 @@ Returns `e1` raised to the power `e2`.
 
 {{< func "fn sqrt(e: T) -> T" >}}
 Returns the square root of `e`.
+{{< /func >}}
+
+{{< func "fn inverseSqrt(e: T) -> T" >}}
+Returns the reciprocal of `sqrt(e)`.
 {{< /func >}}
 
 ## Linear Algebra
@@ -140,6 +142,8 @@ Returns the transpose of `e`.
 {{< /func >}}
 
 ## Round, Limit, Mix, Compare
+For all functions in this section, if the argument is a vector, the result
+is calculated **per component**.
 {{< func "fn abs(e: T ) -> T" >}}
 The absolute value of `e`. Component-wise when `T` is a vector. 
 {{< /func >}}
@@ -207,8 +211,8 @@ Returns the (component-wise) linear blend of `e1` and `e2`, e.g. `e1 * (1 - e3) 
 Splits `e` into a fraction and an exponent so that `e = fraction * 2^exponent`. The fraction is `0.0` or its magnitude is in the range `[0.5, 1.0)`. Returns the `__frexp_result` or `__frexp_result_f16` built-in structure.
 {{< /func >}}
 
-{{< func "fn ldexp(e1: T, e2: I) -> T" >}}
-Returns `e1 * 2^e2`.
+{{< func "fn ldexp(fraction: T, exponent: I) -> T" >}}
+Returns `fraction * 2^exponent`.
 {{< /func >}}
 
 {{< func "fn quantizeToF16(e: T) -> T" >}}

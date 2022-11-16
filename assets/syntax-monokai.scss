@@ -16,7 +16,7 @@
 /* KeywordPseudo */ .chroma .kp { color: #66d9ef }
 /* KeywordReserved */ .chroma .kr { color: #66d9ef }
 /* KeywordType */ .chroma .kt { color: #66d9ef }
-/* Name */ .chroma .n {  }
+/* Name */ .chroma .n { color: #ccc }
 /* NameAttribute */ .chroma .na { color: #a6e22e }
 /* NameBuiltin */ .chroma .nb {  }
 /* NameBuiltinPseudo */ .chroma .bp {  }
@@ -62,14 +62,14 @@
 /* LiteralNumberOct */ .chroma .mo { color: #ae81ff }
 /* Operator */ .chroma .o { color: #f92672 }
 /* OperatorWord */ .chroma .ow { color: #f92672 }
-/* Punctuation */ .chroma .p {  }
-/* Comment */ .chroma .c { color: #75715e }
-/* CommentHashbang */ .chroma .ch { color: #75715e }
-/* CommentMultiline */ .chroma .cm { color: #75715e }
-/* CommentSingle */ .chroma .c1 { color: #75715e }
-/* CommentSpecial */ .chroma .cs { color: #75715e }
-/* CommentPreproc */ .chroma .cp { color: #75715e }
-/* CommentPreprocFile */ .chroma .cpf { color: #75715e }
+/* Punctuation */ .chroma .p { /* color: #ef8f66 */ }
+/* Comment */ .chroma .c { color: #999 }
+/* CommentHashbang */ .chroma .ch { color: #999 }
+/* CommentMultiline */ .chroma .cm { color: #999 }
+/* CommentSingle */ .chroma .c1 { color: #999 }
+/* CommentSpecial */ .chroma .cs { color: #999 }
+/* CommentPreproc */ .chroma .cp { color: #999 }
+/* CommentPreprocFile */ .chroma .cpf { color: #999 }
 /* Generic */ .chroma .g {  }
 /* GenericDeleted */ .chroma .gd { color: #f92672 }
 /* GenericEmph */ .chroma .ge { font-style: italic }
