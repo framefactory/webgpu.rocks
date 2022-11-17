@@ -1,0 +1,9 @@
+<ul class="main-menu">
+    {{ $current_type := .Page.Type }}
+    {{ range .Site.Sections }}
+    <li class="{{ if eq $current_type .Type }}selected{{ end }}">
+        {{ $default_page := .Site.GetPage .Page.Params.default_page }}
+        <a href="{{ $default_page.RelPermalink }}?menu">{{ .Title }}</a>
+    </li>
+    {{ end }}
+</ul>

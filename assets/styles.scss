@@ -42,24 +42,24 @@ $color-attribute: #6279a4;
 $color-operation: #89a76f;
 $color-field: #727883;
 
-@mixin font-idl-mono {
+@mixin font-mono {
     font-family: 'Inconsolata', monospace;
     font-weight: 300;
 }
 
-@mixin font-idl-text {
-    font-family: 'Roboto', sans-serif;
+@mixin font-text {
+    font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
 }
 
-@mixin font-idl-condensed {
-    font-family: 'Roboto Condensed', sans-serif;
+@mixin font-toc-regular {
+    font-family: 'Fira Sans', sans-serif;
     font-weight: 400;
 }
 
-@mixin font-poppins {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+@mixin font-toc-condensed {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: 400;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,8 @@ $color-field: #727883;
 body {
     background-color: $color-background;
     color: $color-text;
-    font-family: "Source Sans Pro", "Poppins", "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
+    font-family: "Fira Sans", "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
+    font-weight: 300;
     font-size: 1.05em;
 }
 
@@ -76,11 +77,15 @@ strong {
 }
 
 code {
-    @include font-idl-mono;
+    @include font-mono;
 }
 
 a, a:hover, a:visited {
     text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    color: $color-text-light;
 }
 
 img {
@@ -95,6 +100,7 @@ button, input {
 
 ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
 }
 ::-webkit-scrollbar-track {
     background-color: $color-background-dark;
@@ -108,8 +114,7 @@ button, input {
 
 @import "./syntax-monokai";
 
-.chroma {
-    display: block;
+pre.chroma {
     color: $color-text-dark;
 }
 
@@ -136,27 +141,21 @@ header, footer {
     color: $color-text-darker;
 
     img, svg {
-        height: 2em;
+        height: 1.8em;
+        width: auto;
         fill: $color-text-dark;
-    }
+    }    
+
     span {
         margin: 0 1em;
     }
 
-    a, a:visited {
-        color: inherit;
-    }
-    a:hover {
-        color: $color-text-light;
-    }
     .spacer {
         flex: 1 1 auto;
     }
 }
 
 header {
-    @include font-poppins;
-
     .option {
         align-self: stretch;
         margin: 0.2em 0.5em 0 0.5em;
@@ -190,17 +189,6 @@ footer {
     &.section {
         padding-bottom: 2em;
     }
-
-    a, a:visited {
-        color: $color-text-link;
-    }
-    a:hover {
-        color: $color-text-link-hover;
-    }
-
-    a:hover code {
-        color: $color-primary;
-    }
 }
 
 .sidebar {
@@ -210,97 +198,126 @@ footer {
     flex-direction: column;
     background-color: $color-background;
     border-right: 1px solid $color-background-lighter;
-    font-size: 0.95rem;
+    @include font-toc-condensed;
+
+    .main-menu {
+        display: none;
+        padding: 0.5em 0;
+        background-color: $color-background-dark;
+        border-top: 1px solid $color-background;
+        //border-bottom: 1px solid $color-background-light;    
+    }
+}
+
+.main-menu {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    @include font-mono;
+    font-size: 1.4em;
+
+    li {
+        margin: 0 0.25em;
+        border-bottom: 4px solid transparent;
+        color: $color-text-darker;
+
+        &.selected {
+            color: $color-text;
+            border-bottom: 4px solid lighten($color-secondary, 15%);
+        }
+    }
 }
 
 /* Sidebar table of contents */
 .toc {
     overflow: hidden auto;
 
-    li:hover {
-        color: $color-text-light;
-        background-color: $color-background-light;
-    }
-    a, a:hover, a:visited {
-        color: inherit;
-    }
     h2 {
-        @include font-idl-mono;
+        @include font-mono;
         margin: 0;
-        padding: 2px 0.25em;
-        font-size: 1.5em;
-        font-weight: 500;
+        padding: 2px 6px;
+        font-size: 1.4em;
         background-color: $color-wgsl;
         color: $color-text;
     }
     ul {
-        @include font-idl-condensed;
+        padding: 0;
         margin: 0.5em 0;
-        padding: 0 0.25em;
         list-style: none;
         line-height: 1.7em;
         color: $color-text-dark;
     }
-}
+    a {
+        display: block;
+        padding: 0 6px;
 
-.toc.wgsl {
-    ul {
-        //@include font-idl-mono;
+        &:hover {
+            color: $color-text-light;
+            background-color: $color-background-light;    
+        }
     }
 }
 
 .content {
     flex: 1 1 auto;
-    display: flex;
+    overflow: auto;
+
+    a, a:visited {
+        color: $color-text-link;
+    }
+    a:hover {
+        color: $color-text-link-hover;
+    }
+    a:hover code {
+        color: $color-primary;
+    }
 }
 
 /* WGSL reference pages */
 .reference {
-    flex: 1 1 auto;
-    overflow: auto;
     padding: 0.5em;
-    font-weight: 300;
-    font-size: 0.9em;
 
     h1, h2 {
-        @include font-idl-mono;
-    }
-    h1 + h2 {
-        margin: 0;
-    }
-    h2 + p {
-        margin-top: 0.5em;
+        @include font-mono;
     }
     h1 {
-        font-size: 1.3em;
+        font-size: 1.4em;
+        margin: 0 0 0.5em 0;
     }
     h2 {
-        font-size: 1.5em;
-        margin: 0.8em 0 0 0;
-        padding: 0 0.15em;
+        font-size: 1.4em;
+        margin: 0.8em 0 0.4em 0;
+        padding: 0 3px;
         background-color: $color-wgsl;
         color: $color-text;
     }
     h3 {
         margin: 0.5em 0 0 0;
-        font-size: 1.1em;
+        font-size: 1em;
     }
     code {
-        font-size: 1.05em;
+        font-size: 1.11em;
         color: $color-code;
     }
     p {
-        padding: 0;
+        font-size: 0.95em;
+        line-height: 1.5em;
         margin: 0 0 0.5em 0;
 
         code {
-            padding: 0 0.15em;
+            padding: 0 3px;
             background-color: mix($color-background, $color-background-dark, 50);
             border-radius: 4px;
         }
     }
     table {
         width: 100%;
+        font-size: 0.95em;
+        line-height: 1.8em;
+    }
+    td {
+        padding: 0 3px;
     }
     tr:nth-child(odd) {
         background: $color-background-dark;
@@ -331,7 +348,7 @@ footer {
         padding: 0 0.25em;
         background-color: $color-background-lightest;
         border-radius: 5px;
-        @include font-idl-mono;
+        @include font-mono;
     }
 }
 
@@ -342,7 +359,7 @@ footer {
     padding: 1em;
 
     h1, h2 {
-        @include font-idl-mono;
+        @include font-mono;
     }
 
     h1 {
@@ -361,7 +378,6 @@ footer {
         list-style: square;
     }
     li {
-        font-size: 0.95em;
         margin-bottom: 0.25em;
     }
 
@@ -389,13 +405,22 @@ button.menu {
 }
 
 @media(max-width: 768px) {
+    header .main-menu {
+        display: none;
+    }
     button.menu {
         display: block;
     }
 
     .sidebar {
+        @include font-toc-regular;
         flex: 1 1 auto;
-        display: none;    
+        display: none;
+        border: none;
+
+        .main-menu {
+            display: flex;
+        }
     }
 
     .menu-on {
@@ -429,7 +454,7 @@ button.menu {
     flex: 1 1 auto;
     overflow: hidden auto;
 
-    @include font-idl-mono;
+    @include font-mono;
     box-shadow: 0 0 1.2em 0 rgba(black, 0.5);
     font-size: 0.95rem;
     //margin: 1em 0;

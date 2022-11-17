@@ -63,13 +63,14 @@ function prettyPrint(filePath: string, data: any)
         if (html) {
             const typeFolder = folderTitles[node.type];
             const name = node["name"];
-            const frontMatter = `---\ntitle: ${key}\n---\n\n`;
+            const frontMatter = `---\ntitle: ${key}\n---\n`;
+            const content = [ frontMatter, html ].join("\n");
 
             const basePath = path.resolve(contentTypesPath, typeFolder);
             mkdirp.sync(basePath);
 
             const filePath = path.resolve(basePath, name + ".html");
-            fs.writeFileSync(filePath, frontMatter + html);
+            fs.writeFileSync(filePath, content);
         }
     });
 

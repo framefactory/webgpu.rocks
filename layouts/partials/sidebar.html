@@ -1,3 +1,4 @@
+{{ partial "main-menu.html" . }}
 {{ if eq .Page.Type "wgsl" }}
     <div class="toc wgsl">
         {{ range where .Site.Sections "Type" "wgsl" }}
