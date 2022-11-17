@@ -15,8 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">  
 
     <!-- Styles -->
-    {{ $style := resources.Get "styles.scss" | toCSS | minify }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+    {{ $options := (dict "targetPath" "styles.css" "outputStyle" "compressed") }}
+    {{ $styles := resources.Get "styles.scss" | toCSS $options | fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
 
     <title>{{ block "title" . }}
         {{ .Title }} - {{ .Site.Title }}
