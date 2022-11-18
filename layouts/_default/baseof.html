@@ -7,13 +7,6 @@
 
     <!-- <link rel="icon" type="image/png" href="/favicon-32.png" /> -->
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">  
-
     <!-- Styles -->
     {{ $options := (dict "targetPath" "styles.css" "outputStyle" "compressed") }}
     {{ $styles := resources.Get "styles.scss" | toCSS $options | fingerprint }}

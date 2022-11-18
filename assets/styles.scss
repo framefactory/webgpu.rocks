@@ -3,6 +3,7 @@
  * Static Hugo Website
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&family=Fira+Sans:ital,wght@0,300;0,400;1,400&family=Inconsolata&display=swap');
 @import "../node_modules/bootstrap/scss/bootstrap-reboot";
 
 $color-primary: hsl(42, 21%, 60%);
@@ -10,7 +11,8 @@ $color-secondary: hsl(212, 63%, 32%);
 $color-title: hsl(42, 21%, 60%);
 
 $color-text: hsl(204, 12%, 75%);
-$color-text-light: #f0f0f0;
+$color-text-light: #ddd;
+$color-text-lighter: #f0f0f0;
 $color-text-link: $color-primary;
 $color-text-link-hover: #d0d0d0;
 $color-text-dark: darken($color-text, 5%);
@@ -85,7 +87,7 @@ a, a:hover, a:visited {
     color: inherit;
 }
 a:hover {
-    color: $color-text-light;
+    color: $color-text-lighter;
 }
 
 img {
@@ -239,7 +241,7 @@ footer {
         padding: 2px 6px;
         font-size: 1.4em;
         background-color: $color-wgsl;
-        color: $color-text;
+        color: $color-text-light;
     }
     ul {
         padding: 0;
@@ -253,7 +255,7 @@ footer {
         padding: 0 6px;
 
         &:hover {
-            color: $color-text-light;
+            color: $color-text-lighter;
             background-color: $color-background-light;    
         }
     }
@@ -440,7 +442,7 @@ button.menu {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// REFERENCE
+// WEBGPU REFERENCE
 
 @mixin idl-badge {
     display: inline-block;
@@ -475,10 +477,10 @@ button.menu {
     }
 
     h2 {
-        font-size: 1.5em;
+        font-size: 1.52em;
         font-weight: 500;
         margin: 0;
-        color: $color-text;
+        color: $color-text-light;
     }
 
     summary {list-style: none}
