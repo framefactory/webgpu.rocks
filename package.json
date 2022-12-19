@@ -34,10 +34,10 @@
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@types/node": "^18.11.9",
+    "@types/node": "^18.11.17",
     "@types/webidl2": "^23.13.6",
     "bikeshed-to-ts": "github:toji/bikeshed-to-ts",
-    "typescript": "^4.9.3",
+    "typescript": "^4.9.4",
     "webidl2": "^24.2.2"
   }
 }
