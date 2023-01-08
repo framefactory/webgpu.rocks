@@ -1,6 +1,6 @@
 {
   "name": "webgpu.rocks",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
   "description": "WebGPU resources and quick reference",
   "author": {
@@ -34,7 +34,7 @@
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@types/node": "^18.11.17",
+    "@types/node": "^18.11.18",
     "@types/webidl2": "^23.13.6",
     "bikeshed-to-ts": "github:toji/bikeshed-to-ts",
     "typescript": "^4.9.4",

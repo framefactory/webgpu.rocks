@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@popperjs/core': ^2.11.6
-  '@types/node': ^18.11.17
+  '@types/node': ^18.11.18
   '@types/webidl2': ^23.13.6
   bikeshed-to-ts: github:toji/bikeshed-to-ts
   bootstrap: ^5.2.3
@@ -18,7 +18,7 @@ dependencies:
   source-map-support: 0.5.21
 
 devDependencies:
-  '@types/node': 18.11.17
+  '@types/node': 18.11.18
   '@types/webidl2': 23.13.6
   bikeshed-to-ts: github.com/toji/bikeshed-to-ts/a8f58349cc047646bdfd7311a7c9050a2c802a7a
   typescript: 4.9.4
@@ -50,8 +50,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /@types/node/18.11.17:
-    resolution: {integrity: sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==}
+  /@types/node/18.11.18:
+    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
     dev: true
 
   /@types/webidl2/23.13.6:
