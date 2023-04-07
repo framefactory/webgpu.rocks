@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@popperjs/core': ^2.11.6
-  '@types/node': ^18.14.0
+  '@popperjs/core': ^2.11.7
+  '@types/node': ^18.15.11
   '@types/webidl2': ^23.13.6
   bikeshed-to-ts: github:toji/bikeshed-to-ts
   bootstrap: ^5.2.3
@@ -12,13 +12,13 @@ specifiers:
   webidl2: ^24.2.2
 
 dependencies:
-  '@popperjs/core': 2.11.6
-  bootstrap: 5.2.3_@popperjs+core@2.11.6
+  '@popperjs/core': 2.11.7
+  bootstrap: 5.2.3_@popperjs+core@2.11.7
   mkdirp: 1.0.4
   source-map-support: 0.5.21
 
 devDependencies:
-  '@types/node': 18.14.0
+  '@types/node': 18.15.11
   '@types/webidl2': 23.13.6
   bikeshed-to-ts: github.com/toji/bikeshed-to-ts/a8f58349cc047646bdfd7311a7c9050a2c802a7a
   typescript: 4.9.5
@@ -41,8 +41,8 @@ packages:
     resolution: {integrity: sha512-wQkAuh4p96ZZvCuOA1XRi8FiYE2Nbsozzv8y8mRq2JwN7fSJS0DtMCsLvfcpEF4wdFo2Hum0u3vpxoAv0rY5Eg==}
     dev: true
 
-  /@popperjs/core/2.11.6:
-    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+  /@popperjs/core/2.11.7:
+    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
     dev: false
 
   /@tootallnate/once/1.1.2:
@@ -50,8 +50,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /@types/node/18.14.0:
-    resolution: {integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==}
+  /@types/node/18.15.11:
+    resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
     dev: true
 
   /@types/webidl2/23.13.6:
@@ -111,12 +111,12 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: true
 
-  /bootstrap/5.2.3_@popperjs+core@2.11.6:
+  /bootstrap/5.2.3_@popperjs+core@2.11.7:
     resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
     peerDependencies:
       '@popperjs/core': ^2.11.6
     dependencies:
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
     dev: false
 
   /browser-process-hrtime/1.0.0:
