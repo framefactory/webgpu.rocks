@@ -1,6 +1,6 @@
 {
   "name": "webgpu.rocks",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "license": "MIT",
   "description": "WebGPU resources and quick reference",
   "author": {
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/framefactory/webgpu.rocks/issues"
   },
-  "packageManager": "pnpm@7.15.0",
+  "packageManager": "pnpm@8.4.0",
   "main": "bin/index.js",
   "scripts": {
     "start": "tsc && node bin/index.js",
@@ -28,16 +28,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.7",
-    "bootstrap": "^5.2.3",
-    "mkdirp": "^1.0.4",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.0",
+    "mkdirp": "^3.0.1",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11",
+    "@types/node": "^20.2.5",
     "@types/webidl2": "^23.13.6",
     "bikeshed-to-ts": "github:toji/bikeshed-to-ts",
-    "typescript": "^4.9.5",
-    "webidl2": "^24.2.2"
+    "typescript": "^5.0.4",
+    "webidl2": "^24.3.0"
   }
 }
