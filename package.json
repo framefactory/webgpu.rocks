@@ -1,6 +1,6 @@
 {
   "name": "webgpu.rocks",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "license": "MIT",
   "description": "WebGPU resources and quick reference",
   "author": {
@@ -29,15 +29,15 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.0",
+    "bootstrap": "^5.3.2",
     "mkdirp": "^3.0.1",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@types/node": "^20.2.5",
-    "@types/webidl2": "^23.13.6",
+    "@types/node": "^20.8.2",
+    "@types/webidl2": "^24.4.1",
     "bikeshed-to-ts": "github:toji/bikeshed-to-ts",
-    "typescript": "^5.0.4",
-    "webidl2": "^24.3.0"
+    "typescript": "^5.2.2",
+    "webidl2": "^24.4.1"
   }
 }

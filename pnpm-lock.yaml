@@ -5,8 +5,8 @@ dependencies:
     specifier: ^2.11.8
     version: 2.11.8
   bootstrap:
-    specifier: ^5.3.0
-    version: 5.3.0(@popperjs/core@2.11.8)
+    specifier: ^5.3.2
+    version: 5.3.2(@popperjs/core@2.11.8)
   mkdirp:
     specifier: ^3.0.1
     version: 3.0.1
@@ -16,20 +16,20 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^20.2.5
-    version: 20.2.5
+    specifier: ^20.8.2
+    version: 20.8.2
   '@types/webidl2':
-    specifier: ^23.13.6
-    version: 23.13.6
+    specifier: ^24.4.1
+    version: 24.4.1
   bikeshed-to-ts:
     specifier: github:toji/bikeshed-to-ts
     version: github.com/toji/bikeshed-to-ts/a8f58349cc047646bdfd7311a7c9050a2c802a7a
   typescript:
-    specifier: ^5.0.4
-    version: 5.0.4
+    specifier: ^5.2.2
+    version: 5.2.2
   webidl2:
-    specifier: ^24.3.0
-    version: 24.3.0
+    specifier: ^24.4.1
+    version: 24.4.1
 
 packages:
 
@@ -57,12 +57,12 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /@types/node@20.2.5:
-    resolution: {integrity: sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==}
+  /@types/node@20.8.2:
+    resolution: {integrity: sha512-Vvycsc9FQdwhxE3y3DzeIxuEJbWGDsnrxvMADzTDF/lcdR9/K+AQIeAghTQsHtotg/q0j3WEOYS/jQgSdWue3w==}
     dev: true
 
-  /@types/webidl2@23.13.6:
-    resolution: {integrity: sha512-sPMaZm2M7ZBaVnajY1WFszcl+6CR/daMt77dD8PpMH1wRKinRMDV40U55VmObJ58Oehu7K2JxmSonkm8BlbfxA==}
+  /@types/webidl2@24.4.1:
+    resolution: {integrity: sha512-QOUiQqroO0ZtbQ4dM7T29bB0rSukCzmiRQJVUT9x75URLfDX4ve5nKHl9xwNUGgFW6qfRSyNtsLyp5ogENUZqw==}
     dev: true
 
   /abab@2.0.6:
@@ -118,10 +118,10 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: true
 
-  /bootstrap@5.3.0(@popperjs/core@2.11.8):
-    resolution: {integrity: sha512-UnBV3E3v4STVNQdms6jSGO2CvOkjUMdDAVR2V5N4uCMdaIkaQjbcEAMqRimDHIs4uqBYzDAKCQwCB+97tJgHQw==}
+  /bootstrap@5.3.2(@popperjs/core@2.11.8):
+    resolution: {integrity: sha512-D32nmNWiQHo94BKHLmOrdjlL05q1c8oxbtBphQFb9Z5to6eGRDCm0QgeaZ4zFBHzfg2++rqa2JkqCcxDy0sH0g==}
     peerDependencies:
-      '@popperjs/core': ^2.11.7
+      '@popperjs/core': ^2.11.8
     dependencies:
       '@popperjs/core': 2.11.8
     dev: false
@@ -511,9 +511,9 @@ packages:
     hasBin: true
     dev: true
 
-  /typescript@5.0.4:
-    resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
-    engines: {node: '>=12.20'}
+  /typescript@5.2.2:
+    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+    engines: {node: '>=14.17'}
     hasBin: true
     dev: true
 
@@ -553,8 +553,8 @@ packages:
     engines: {node: '>=10.4'}
     dev: true
 
-  /webidl2@24.3.0:
-    resolution: {integrity: sha512-u42I31V2xQSBPCLtjFdk98cb06gTVnfPmq8eNDmcM3iaqtDdvY+GF5ZLPg3hEL/h6K50fsgPt+2YXFysSq8wcw==}
+  /webidl2@24.4.1:
+    resolution: {integrity: sha512-cPToqvZlxTAlaMucZyU28XtFLJz3XPdTdIWK/r3IaP1jfkjqne3OTniJS8DZqfzee1aBUQn80d6s2vYert50kg==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -643,7 +643,7 @@ packages:
     dependencies:
       '@dekkai/data-source': 0.2.3
       typescript: 4.9.5
-      webidl2: 24.3.0
+      webidl2: 24.4.1
       webidl2ts: github.com/toji/webidl2ts/d6d7e68a0e59e2c716b058ea437f7f49958a0e56
       yargs: 16.2.0
     transitivePeerDependencies:
@@ -661,7 +661,7 @@ packages:
     dependencies:
       jsdom: 16.7.0
       typescript: 4.9.5
-      webidl2: 24.3.0
+      webidl2: 24.4.1
       yargs: 16.2.0
     transitivePeerDependencies:
       - bufferutil
