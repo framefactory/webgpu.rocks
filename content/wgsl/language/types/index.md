@@ -34,6 +34,7 @@ a vector of `N` components of type `T`. `N` must be in `{2, 3, 4}` and `T` must 
 one of the scalar types. `T` is the *component type* of the vector.
 {{< wgsl >}}
 var a: vec3<f32> = vec3<f32>(1.0, 2.2, 3.1);
+var b: vec3f = vec3f(1.0, 2.0, 3.0);
 {{< /wgsl >}}
 
 
@@ -44,7 +45,7 @@ both in `{2, 3, 4}`, and `T` must be a scalar floating point type.
 Equivalently, it can be viewed as `C` column vectors of type `vecR<T>`. 
 {{< wgsl >}}
 mat2x3<f32>  // This is a 2 column, 3 row matrix of 32-bit floats.
-             // Equivalently, it is 2 column vectors of type vec3<f32>.
+mat2x3f      // mat2x3f, it is 2 column vectors of type vec3f.
 {{< /wgsl >}}
 
 ## Atomic
