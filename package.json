@@ -1,6 +1,6 @@
 {
   "name": "webgpu.rocks",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "license": "MIT",
   "description": "WebGPU resources and quick reference",
   "author": {
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/framefactory/webgpu.rocks/issues"
   },
-  "packageManager": "pnpm@8.4.0",
+  "packageManager": "pnpm@9.12.0",
   "main": "bin/index.js",
   "scripts": {
     "start": "tsc && node bin/index.js",
