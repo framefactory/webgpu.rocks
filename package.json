@@ -1,6 +1,6 @@
 {
   "name": "webgpu.rocks",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "license": "MIT",
   "description": "WebGPU resources and quick reference",
   "author": {
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/framefactory/webgpu.rocks/issues"
   },
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "pnpm@10.14.0",
   "main": "bin/index.js",
   "scripts": {
     "start": "tsc && node bin/index.js",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@types/node": "^20.8.2",
     "@types/webidl2": "^24.4.1",
-    "bikeshed-to-ts": "github:toji/bikeshed-to-ts",
+    "bikeshed-to-ts": "github:toji/bikeshed-to-ts#a8f58349cc047646bdfd7311a7c9050a2c802a7a",
     "typescript": "^5.2.2",
     "webidl2": "^24.4.1"
   }
