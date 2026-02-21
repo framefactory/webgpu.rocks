@@ -12,8 +12,8 @@ importers:
         specifier: ^2.11.8
         version: 2.11.8
       bootstrap:
-        specifier: ^5.3.2
-        version: 5.3.7(@popperjs/core@2.11.8)
+        specifier: ^5.3.8
+        version: 5.3.8(@popperjs/core@2.11.8)
       mkdirp:
         specifier: ^3.0.1
         version: 3.0.1
@@ -22,19 +22,19 @@ importers:
         version: 0.5.21
     devDependencies:
       '@types/node':
-        specifier: ^20.8.2
-        version: 20.19.9
+        specifier: ^25.3.0
+        version: 25.3.0
       '@types/webidl2':
-        specifier: ^24.4.1
+        specifier: ^24.4.3
         version: 24.4.3
       bikeshed-to-ts:
         specifier: github:toji/bikeshed-to-ts#a8f58349cc047646bdfd7311a7c9050a2c802a7a
         version: https://codeload.github.com/toji/bikeshed-to-ts/tar.gz/a8f58349cc047646bdfd7311a7c9050a2c802a7a
       typescript:
-        specifier: ^5.2.2
-        version: 5.9.2
+        specifier: ^5.9.3
+        version: 5.9.3
       webidl2:
-        specifier: ^24.4.1
+        specifier: ^24.5.0
         version: 24.5.0
 
 packages:
@@ -55,8 +55,8 @@ packages:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
 
-  '@types/node@20.19.9':
-    resolution: {integrity: sha512-cuVNgarYWZqxRJDQHEB58GEONhOK79QVR/qYx4S7kcUObQvUwvFnYxJuuHUKm2aieN9X3yZB4LZsuYNU1Qphsw==}
+  '@types/node@25.3.0':
+    resolution: {integrity: sha512-4K3bqJpXpqfg2XKGK9bpDTc6xO/xoUP/RBWS7AtRMug6zZFaRekiLzjVtAoZMquxoAbzBvy5nxQ7veS5eYzf8A==}
 
   '@types/webidl2@24.4.3':
     resolution: {integrity: sha512-Rn7VaRM3TmzA3nPgwSOqC8MGzzY2W8J7f0IPEf2g5Ga0e6jCsuLRHF+O0gywp3gh37IE/quCWCbNDTwAdKeFKw==}
@@ -102,8 +102,8 @@ packages:
     version: 1.2.0
     hasBin: true
 
-  bootstrap@5.3.7:
-    resolution: {integrity: sha512-7KgiD8UHjfcPBHEpDNg+zGz8L3LqR3GVwqZiBRFX04a1BCArZOz1r2kjly2HQ0WokqTO0v1nF+QAt8dsW4lKlw==}
+  bootstrap@5.3.8:
+    resolution: {integrity: sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==}
     peerDependencies:
       '@popperjs/core': ^2.11.8
 
@@ -362,13 +362,13 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  typescript@5.9.2:
-    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@6.21.0:
-    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+  undici-types@7.18.2:
+    resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
 
   universalify@0.2.0:
     resolution: {integrity: sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==}
@@ -404,6 +404,7 @@ packages:
 
   whatwg-encoding@1.0.5:
     resolution: {integrity: sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-mimetype@2.3.0:
     resolution: {integrity: sha512-M4yMwr6mAnQz76TbJm914+gPpB/nCwvZbJU28cUD6dR004SAxDLOOSUaB1JDRqLtaOV/vi0IC5lEAGFgrjGv/g==}
@@ -461,9 +462,9 @@ snapshots:
 
   '@tootallnate/once@1.1.2': {}
 
-  '@types/node@20.19.9':
+  '@types/node@25.3.0':
     dependencies:
-      undici-types: 6.21.0
+      undici-types: 7.18.2
 
   '@types/webidl2@24.4.3': {}
 
@@ -507,7 +508,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  bootstrap@5.3.7(@popperjs/core@2.11.8):
+  bootstrap@5.3.8(@popperjs/core@2.11.8):
     dependencies:
       '@popperjs/core': 2.11.8
 
@@ -772,9 +773,9 @@ snapshots:
 
   typescript@4.2.4: {}
 
-  typescript@5.9.2: {}
+  typescript@5.9.3: {}
 
-  undici-types@6.21.0: {}
+  undici-types@7.18.2: {}
 
   universalify@0.2.0: {}
 

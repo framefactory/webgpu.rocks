@@ -33,4 +33,4 @@ Let's say you want to create a [`GPUDevice`](/reference/interface/gpudevice/#idl
 
 ## Are these pages up to date?
 
-The WebGPU specification is still under development and changes frequently. The reference pages are auto-generated regularly from the evolving [WebGPU specification](https://gpuweb.github.io/gpuweb/). If you find them outdated, [open an issue](https://github.com/framefactory/webgpu.rocks) or drop me a [message](mailto:janitor@webgpu.rocks).
+The reference pages are auto-generated regularly from the evolving [WebGPU specification](https://gpuweb.github.io/gpuweb/). If you find them outdated, [open an issue](https://github.com/framefactory/webgpu.rocks) or drop me a [message](mailto:janitor@webgpu.rocks).
