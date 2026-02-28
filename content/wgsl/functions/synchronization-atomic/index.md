@@ -37,7 +37,7 @@ Atomic Read-modify-write. Returns the original value stored in the atomic object
 Atomic Read-modify-write. Returns the original value stored in the atomic object.
 {{< /func >}}
 
-{{< func "fn atomicMax(atomic_ptr: ptr<AS, atomic<T>, read_write>, v: T) -> T" >}}
+{{< func "fn atomicMin(atomic_ptr: ptr<AS, atomic<T>, read_write>, v: T) -> T" >}}
 Atomic Read-modify-write. Returns the original value stored in the atomic object.
 {{< /func >}}
 
